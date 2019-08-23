@@ -40,11 +40,11 @@
         </tr>
         <tr>
             <th scope="row"><?= __('AvatarHashes') ?></th>
-            <td><?= h($vendor->avatarHashes) ?></td>
+	        <td><?php print_r($vendor->avatarHashes) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('HeaderHashes') ?></th>
-            <td><?= h($vendor->headerHashes) ?></td>
+	        <td><?php print_r($vendor->headerHashes) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Stats') ?></th>
