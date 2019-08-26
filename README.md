@@ -1,5 +1,5 @@
 # phpbazaar
-CakePHP based viewer for raflood's (openbazaar) postgres db
+CakePHP based viewer for openbazaar db
 
 ## installation
 * composer install
