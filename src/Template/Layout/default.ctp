@@ -13,7 +13,11 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+/**
+ * @var \App\View\AppView $this
+ */
+
+$cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products listed on the distributed OpenBazzaar platform. The search ranking on the Explorer can be influenced by burning BlockStamps (BST). BlockStamp is a cryptocurrency available on many exchanges.';
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,13 +41,32 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
+	            <span><?=$this->Html->link(
+		            __( 'Home' ),
+		            [
+			            'controller' => 'Pages',
+			            'action'     => 'display',
+			            'home'
+		            ]
+	            ); ?></span>
             </li>
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
+                <li><?=$this->Html->link(
+		                __( 'Products' ),
+		                [
+			                'controller' => 'Listings',
+			                'action'     => 'index'
+		                ]
+	                ); ?></li>
+	            <li><?=$this->Html->link(
+			            __( 'Vendors' ),
+			            [
+				            'controller' => 'Vendors',
+				            'action'     => 'index'
+			            ]
+		            ); ?></li>
             </ul>
         </div>
     </nav>

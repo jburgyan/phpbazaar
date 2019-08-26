@@ -7,9 +7,7 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Vendor'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Listings'), ['controller' => 'Listings', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Listing'), ['controller' => 'Listings', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Products'), ['controller' => 'Listings', 'action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="vendors index large-9 medium-8 columns content">
@@ -36,7 +34,6 @@
                 <th scope="col"><?= $this->Paginator->sort('createdAt') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('updatedAt') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('fee') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -61,11 +58,6 @@
                 <td><?= h($vendor->createdAt) ?></td>
                 <td><?= h($vendor->updatedAt) ?></td>
                 <td><?= $this->Number->format($vendor->fee) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $vendor->peerId]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $vendor->peerId]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $vendor->peerId], ['confirm' => __('Are you sure you want to delete # {0}?', $vendor->peerId)]) ?>
-                </td>
             </tr>
             <?php endforeach; ?>
         </tbody>

@@ -11,7 +11,7 @@
     </ul>
 </nav>
 <div class="listings index large-9 medium-8 columns content">
-    <h3><?= __('Listings') ?></h3>
+    <h3><?= __('Products') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -27,7 +27,14 @@
         <tbody>
             <?php foreach ($listings as $listing): ?>
             <tr>
-                <td><?= h($listing->title) ?></td>
+                <td><?= $this->Html->link(
+		                $listing->title,
+		                [
+			                'controller' => 'Listings',
+			                'action'     => 'view',
+			                $listing->slugPeerId
+		                ]
+	                ) ?></td>
 	            <td><?= $listing->has('vendor') ? $this->Html->link($listing->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $listing->vendor->peerId]) : '' ?></td>
                 <td><?= $listing->price['amount'].' '.$listing->price['currencyCode']; ?></td>
                 <td><?= h($listing->categories) ?></td>

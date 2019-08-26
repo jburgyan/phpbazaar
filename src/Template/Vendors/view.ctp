@@ -8,7 +8,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Vendors'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('List Listings'), ['controller' => 'Listings', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('List Products'), ['controller' => 'Listings', 'action' => 'index']) ?> </li>
     </ul>
 </nav>
 <div class="vendors view large-9 medium-8 columns content">
@@ -97,14 +97,14 @@
     </div>
     <div class="row">
         <h4><?= __('About') ?></h4>
-        <?= $this->Text->autoParagraph(h($vendor->about)); ?>
+        <?= $this->Text->autoParagraph($vendor->about); ?>
     </div>
     <div class="row">
         <h4><?= __('ShortDescription') ?></h4>
-        <?= $this->Text->autoParagraph(h($vendor->shortDescription)); ?>
+        <?= $this->Text->autoParagraph($vendor->shortDescription); ?>
     </div>
     <div class="related">
-        <h4><?= __('Related Listings') ?></h4>
+        <h4><?= __('Products') ?></h4>
         <?php if (!empty($vendor->listings)): ?>
 	        <table cellpadding="0" cellspacing="0">
 		        <thead>

@@ -7,7 +7,7 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Listings'), ['action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('List Products'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('List Vendors'), ['controller' => 'Vendors', 'action' => 'index']) ?> </li>
     </ul>
 </nav>
@@ -176,27 +176,23 @@
         <?= $this->Text->autoParagraph(h($listing->slugPeerId)); ?>
     </div>
     <div class="row">
-        <h4><?= __('Slug') ?></h4>
-        <?= $this->Text->autoParagraph(h($listing->slug)); ?>
-    </div>
-    <div class="row">
         <h4><?= __('Title') ?></h4>
         <?= $this->Text->autoParagraph(h($listing->title)); ?>
     </div>
     <div class="row">
         <h4><?= __('Description') ?></h4>
-        <?= $this->Text->autoParagraph(h($listing->description)); ?>
+        <?= $this->Text->autoParagraph($listing->description); ?>
     </div>
     <div class="row">
         <h4><?= __('TermsAndConditions') ?></h4>
-        <?= $this->Text->autoParagraph(h($listing->termsAndConditions)); ?>
+        <?= $this->Text->autoParagraph($listing->termsAndConditions); ?>
     </div>
     <div class="row">
         <h4><?= __('RefundPolicy') ?></h4>
-        <?= $this->Text->autoParagraph(h($listing->refundPolicy)); ?>
+        <?= $this->Text->autoParagraph($listing->refundPolicy); ?>
     </div>
     <div class="related">
-        <h4><?= __('Related Ratings') ?></h4>
+        <h4><?= __('Ratings') ?></h4>
         <?php if (!empty($listing->ratings)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
@@ -223,7 +219,6 @@
                 <th scope="col"><?= __('CreatedAt') ?></th>
                 <th scope="col"><?= __('UpdatedAt') ?></th>
                 <th scope="col"><?= __('ListingSlugPeerId') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($listing->ratings as $ratings): ?>
             <tr>
@@ -250,11 +245,6 @@
                 <td><?= h($ratings->createdAt) ?></td>
                 <td><?= h($ratings->updatedAt) ?></td>
                 <td><?= h($ratings->listingSlugPeerId) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Ratings', 'action' => 'view', $ratings->ratingKey]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Ratings', 'action' => 'edit', $ratings->ratingKey]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Ratings', 'action' => 'delete', $ratings->ratingKey], ['confirm' => __('Are you sure you want to delete # {0}?', $ratings->ratingKey)]) ?>
-                </td>
             </tr>
             <?php endforeach; ?>
         </table>
