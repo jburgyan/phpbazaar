@@ -36,9 +36,9 @@
 		                ]
 	                ) ?></td>
 	            <td><?= $listing->has('vendor') ? $this->Html->link($listing->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $listing->vendor->peerId]) : '' ?></td>
-                <td><?= $listing->price['amount'].' '.$listing->price['currencyCode']; ?></td>
-                <td><?= h($listing->categories) ?></td>
-                <td><?= h($listing->tags) ?></td>
+                <td><?php $this->Listing->price($listing->price, $listing->contractType); ?></td>
+                <td><?php $this->Listing->catortag($listing->categories); ?></td>
+	            <td><?php $this->Listing->catortag($listing->tags, 't'); ?></td>
 	            <td><?= $this->Number->format($listing->averageRating) ?></td>
 	            <td><?= h($listing->updatedAt) ?></td>
             </tr>
