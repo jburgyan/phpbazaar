@@ -5,7 +5,7 @@
  */
 ?>
 <div class="listings view columns content">
-    <h3><?= h($listing->title) ?></h3>
+    <h3><?= $listing->title ?></h3>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Hash') ?></th>
@@ -61,11 +61,11 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Images') ?></th>
-            <td><?= h($listing->images) ?></td>
+            <td><?php $this->Listing->printimages($listing->images, 'large'); ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Thumbnail') ?></th>
-            <td><?= print_r($listing->thumbnail, true) ?></td>
+	        <td><?php $this->Listing->printimages($listing->thumbnail, 'small'); ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Categories') ?></th>
@@ -85,7 +85,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('ShippingOptions') ?></th>
-            <td><?= h($listing->shippingOptions) ?></td>
+            <td><pre><?= print_r($this->Listing->pg_array_parse($listing->shippingOptions), true) ?></pre></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Coupons') ?></th>
@@ -100,20 +100,8 @@
             <td><?= h($listing->signature) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Raw') ?></th>
-            <td><?= h($listing->raw) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Misc') ?></th>
-            <td><?= h($listing->misc) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Vendor') ?></th>
             <td><?= $listing->has('vendor') ? $this->Html->link($listing->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $listing->vendor->peerId]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __(' Search') ?></th>
-            <td><?= h($listing->_search) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Version') ?></th>
