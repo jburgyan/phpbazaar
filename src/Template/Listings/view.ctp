@@ -12,10 +12,6 @@
             <td><?= h($listing->hash) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Handle') ?></th>
-            <td><?= h($listing->handle) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('IdentityPubKey') ?></th>
             <td><?= h($listing->identityPubKey) ?></td>
         </tr>
@@ -41,7 +37,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('AcceptedCurrencies') ?></th>
-            <td><?= h($listing->acceptedCurrencies) ?></td>
+	        <td><?php $this->Listing->arrtolinks($listing->acceptedCurrencies, 'cu', 'Vendors'); ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('PricingCurrency') ?></th>
@@ -69,7 +65,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Thumbnail') ?></th>
-            <td><?= h($listing->thumbnail) ?></td>
+            <td><?= print_r($listing->thumbnail, true) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Categories') ?></th>

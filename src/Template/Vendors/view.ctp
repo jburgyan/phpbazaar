@@ -63,7 +63,7 @@
         <h4><?= __('ShortDescription') ?></h4>
         <?= $this->Text->autoParagraph($vendor->shortDescription); ?>
     </div>
-    <div class="related">
+    <div id="related" class="related">
         <h4><?= __('Products') ?></h4>
 	    <?php
 	    echo $this->element('products', [

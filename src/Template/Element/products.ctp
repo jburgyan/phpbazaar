@@ -4,19 +4,25 @@
  * @var \App\Model\Entity\Listing[]|\Cake\Collection\CollectionInterface $listings
  * @var string $vendor_id
  */
+if(empty($vendor)) {
+	$options = [];
+} else {
+	// $options = [ 'url'=> [ '#' => 'related' ] ];
+	$options = [];
+}
 ?>
 <table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
-		<th scope="col"><?= $this->Paginator->sort('Listings.title', __('Product')) ?></th>
+		<th scope="col"><?= $this->Paginator->sort('Listings.title', __('Product'), $options); ?></th>
 		<?php if(empty($vendor)) { ?>
-		<th scope="col"><?= $this->Paginator->sort('Listings.vendorPeerId', __('Vendor')) ?></th>
+		<th scope="col"><?= $this->Paginator->sort('Listings.vendorPeerId', __('Vendor'), $options) ?></th>
 		<?php } ?>
-		<th scope="col"><?= $this->Paginator->sort('Listings.price', __('Price')) ?></th>
-		<th scope="col"><?= $this->Paginator->sort('Listings.categories', __('Categories')) ?></th>
-		<th scope="col"><?= $this->Paginator->sort('Listings.tags', __('Tags')) ?></th>
-		<th scope="col"><?= $this->Paginator->sort('Listings.averageRating', __('Rating')) ?></th>
-		<th scope="col"><?= $this->Paginator->sort('Listings.updatedAt', __('Updated')) ?></th>
+		<th scope="col"><?= $this->Paginator->sort('Listings.price', __('Price'), $options) ?></th>
+		<th scope="col"><?= $this->Paginator->sort('Listings.categories', __('Categories'), $options) ?></th>
+		<th scope="col"><?= $this->Paginator->sort('Listings.tags', __('Tags'), $options) ?></th>
+		<th scope="col"><?= $this->Paginator->sort('Listings.averageRating', __('Rating'), $options) ?></th>
+		<th scope="col"><?= $this->Paginator->sort('Listings.updatedAt', __('Updated'), $options) ?></th>
 	</tr>
 	</thead>
 	<tbody>
