@@ -4,14 +4,7 @@
  * @var \App\Model\Entity\Listing $listing
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Products'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('List Vendors'), ['controller' => 'Vendors', 'action' => 'index']) ?> </li>
-    </ul>
-</nav>
-<div class="listings view large-9 medium-8 columns content">
+<div class="listings view columns content">
     <h3><?= h($listing->title) ?></h3>
     <table class="vertical-table">
         <tr>
@@ -64,11 +57,11 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Price') ?></th>
-            <td><?= h($listing->price) ?></td>
+            <td><?php $this->Listing->price($listing->price, $listing->contractType); ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Tags') ?></th>
-            <td><?= h($listing->tags) ?></td>
+            <td><?php $this->Listing->arrtolinks($listing->tags, 't'); ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Images') ?></th>
@@ -80,7 +73,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Categories') ?></th>
-            <td><?= h($listing->categories) ?></td>
+            <td><?php $this->Listing->arrtolinks($listing->categories); ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Condition') ?></th>

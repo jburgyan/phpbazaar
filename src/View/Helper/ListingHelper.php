@@ -10,14 +10,18 @@ class ListingHelper extends Helper\HtmlHelper
 {
 	public function price(array $pricejson, $contractType)
 	{
-		$html =  $pricejson['amount'].' '.$pricejson['currencyCode'];
+		$html = '';
+		if($pricejson['amount'] || $contractType != 'CRYPTOCURRENCY') {
+			$html .= $pricejson['amount'];
+		}
+		$html .=  ' '.$pricejson['currencyCode'];
 		if($contractType == 'CRYPTOCURRENCY') {
 			$html .= $pricejson['modifier'].'%';
 		}
-		echo $html;
+		echo trim($html);
 	}
 
-	public function catortag($categories, $what = 'c') {
+	public function arrtolinks($categories, $what = 'c', $controller = 'Listings', $action = 'index', $id = null) {
 		$categories = trim($categories, "{}");
 		$categories = explode(",", $categories);
 		if(!empty($categories)) {
@@ -25,11 +29,12 @@ class ListingHelper extends Helper\HtmlHelper
 			foreach ($categories as $category) {
 				$category = trim($category, '"');
 				$links[] = $this->link(
-					$category,
+					html_entity_decode($category),
 					[
-						'controller' => 'Listings',
-						'action'     => 'index',
-						$what => $category
+						'controller' => $controller,
+						'action'     => $action,
+						$what => $category,
+						$id
 					]
 				);
 			}
