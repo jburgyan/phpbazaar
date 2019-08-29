@@ -50,20 +50,21 @@ class VendorsController extends AppController {
 		$this->set( 'vendor', $vendor );
 
 		$this->paginate = [
-			'contain' => []
+			'contain' => [],
+			'conditions' => [
+				'vendorPeerId' => $id
+			]
 		];
 		$category = $this->request->getQuery('c');
 		$tag = $this->request->getQuery('t');
 		$connection = ConnectionManager::get( 'default' );
 		if($category) {
-			$this->paginate['conditions'] = [
-				$connection->quote($category)." = ANY(categories)"
-			];
+			$this->paginate['conditions'][] =
+				$connection->quote($category)." = ANY(categories)";
 		}
 		if($tag) {
-			$this->paginate['conditions'] = [
-				$connection->quote($tag)." = ANY(tags)"
-			];
+			$this->paginate['conditions'][] =
+				$connection->quote($tag)." = ANY(tags)";
 		}
 		$listings = $this->paginate( $this->Listings );
 

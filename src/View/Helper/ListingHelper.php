@@ -48,17 +48,20 @@ class ListingHelper extends Helper\HtmlHelper {
 		if(!empty($images) && !isset($images[0])) {
 			$images = array($images);
 		}
-		foreach ($images as $image) {
-			if(!empty($image[$size])) {
-				$path = WWW_ROOT.'img'.DS.$image['filename'].'_'.$size.'.png';
-				if(!is_file($path)) {
-					$imagedata = @file_get_contents("http://localhost:4002/ipfs/".$image[$size]."?usecache=false");
-					if(!empty($imagedata)) {
-						file_put_contents($path, $imagedata);
+		if(!empty($images)) {
+			foreach ($images as $image) {
+				if(!empty($image[$size])) {
+					$filename = $image[$size].'_'.$size;
+					$path = WWW_ROOT.'img'.DS.'ob'.DS.$filename;
+					if(!is_file($path)) {
+						$imagedata = @file_get_contents("http://localhost:4002/ipfs/".$image[$size]."?usecache=false");
+						if(!empty($imagedata)) {
+							file_put_contents($path, $imagedata);
+						}
 					}
-				}
-				if(is_file($path)) {
-					echo $this->image($image['filename'].'_'.$size.'.png', $options);
+					if(is_file($path)) {
+						echo $this->image('ob/'.$filename, $options);
+					}
 				}
 			}
 		}

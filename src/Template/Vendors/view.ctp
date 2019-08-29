@@ -20,11 +20,11 @@
         </tr>
         <tr>
             <th scope="row"><?= __('AvatarHashes') ?></th>
-	        <td><?php print_r($vendor->avatarHashes) ?></td>
+	        <td><?php $this->Listing->printimages($vendor->avatarHashes, 'medium'); ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('HeaderHashes') ?></th>
-	        <td><?php print_r($vendor->headerHashes) ?></td>
+	        <td><?php $this->Listing->printimages($vendor->headerHashes, 'large'); ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Stats') ?></th>
