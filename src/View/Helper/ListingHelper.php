@@ -8,10 +8,11 @@ namespace App\View\Helper;
 use Cake\View\Helper;
 
 class ListingHelper extends Helper\HtmlHelper {
+
 	public function price( array $pricejson, $contractType ) {
 		$html = '';
 		if ( $pricejson['amount'] || $contractType != 'CRYPTOCURRENCY' ) {
-			$html .= $pricejson['amount'];
+			$html .= $pricejson['amount']/100;
 		}
 		$html .= ' ' . $pricejson['currencyCode'];
 		if ( $contractType == 'CRYPTOCURRENCY' ) {
