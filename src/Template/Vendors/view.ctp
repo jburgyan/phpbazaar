@@ -7,8 +7,9 @@
 
 ?>
 <div class="vendors view columns content">
-	<?php $this->Listing->printimages($vendor->headerHashes, 'original', array('class' => 'vendor-header')); ?>
+	<?php $this->Listing->printimages($vendor->headerHashes, 'large', array('class' => 'vendor-header')); ?>
     <h3><?= h($vendor->name) ?></h3>
+	<?php $this->Listing->printimages($vendor->avatarHashes, 'small', array('class' => 'vendor-avatar')); ?>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('PeerId') ?></th>
@@ -17,10 +18,6 @@
         <tr>
             <th scope="row"><?= __('ContactInfo') ?></th>
             <td><?php print_r($vendor->contactInfo) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('AvatarHashes') ?></th>
-	        <td><?php $this->Listing->printimages($vendor->avatarHashes, 'medium'); ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Stats') ?></th>

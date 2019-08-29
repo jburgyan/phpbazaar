@@ -528,3 +528,6 @@ table td {
     min-width: 100%;
     margin-bottom: 2em;
 }
+.vendors .vendor-avatar {
+    margin-bottom: 1em;
+}
