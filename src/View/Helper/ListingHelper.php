@@ -6,6 +6,7 @@
 namespace App\View\Helper;
 
 use Cake\View\Helper;
+use Cake\Utility\Inflector;
 
 class ListingHelper extends Helper\HtmlHelper {
 
@@ -40,6 +41,35 @@ class ListingHelper extends Helper\HtmlHelper {
 			}
 			echo implode( ', ', $links );
 		}
+	}
+
+	public function arrtolist(array $elements, $print = true) {
+		$list = '';
+		foreach ($elements as $label => $element) {
+			if(is_array($element)) {
+				$list .= $this->arrtolist($element);
+			} elseif(!empty($element)) {
+				if(filter_var($element, FILTER_VALIDATE_URL)) {
+					if(!strstr($element, 'http')) {
+						$element = 'http://'.$element;
+					}
+					$element = '<a href="'.$element.'" target="_blank">'.$element.'</a>';
+				}
+				if(filter_var($element, FILTER_VALIDATE_EMAIL)) {
+					$element = '<a href="mailto:'.$element.'">'.$element.'</a>';
+				}
+				$list .= '<li><strong>'.Inflector::humanize(preg_replace('/(?<!\ )[A-Z]/', ' $0', $label)).'</strong>: '.$element.'</li>';
+			}
+		}
+		if(!empty($list)) {
+			$list = '<ul>'.$list.'</ul>';
+			if($print) {
+				echo $list;
+			} else {
+				return $list;
+			}
+		}
+		return '';
 	}
 
 	public function printimages($images, $size = 'large', $options = array(), $print = true) {

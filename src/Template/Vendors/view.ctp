@@ -9,19 +9,21 @@
 <div class="vendors view columns content">
 	<?php $this->Listing->printimages($vendor->headerHashes, 'large', array('class' => 'vendor-header')); ?>
     <h3><?= h($vendor->name) ?></h3>
-	<?php $this->Listing->printimages($vendor->avatarHashes, 'small', array('class' => 'vendor-avatar')); ?>
+	<?php
+	$this->Listing->printimages($vendor->avatarHashes, 'small', array('class' => 'vendor-avatar'));
+	$this->Listing->arrtolist($vendor->contactInfo);
+	$stats = $this->Listing->arrtolist($vendor->stats, false);
+	if(!empty($stats)) {
+		?>
+		<h5>Stats:</h5>
+		<?php
+		echo $stats;
+	}
+	?>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('PeerId') ?></th>
             <td><?= h($vendor->peerId) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('ContactInfo') ?></th>
-            <td><?php print_r($vendor->contactInfo) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Stats') ?></th>
-	        <td><?php print_r($vendor->stats) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('BitcoinPubkey') ?></th>
