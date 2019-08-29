@@ -47,7 +47,7 @@ class ListingHelper extends Helper\HtmlHelper {
 		$list = '';
 		foreach ($elements as $label => $element) {
 			if(is_array($element)) {
-				$list .= $this->arrtolist($element);
+				$list .= '<li><strong>'.Inflector::humanize(preg_replace('/(?<!\ )[A-Z]/', ' $0', $label)).'</strong>: '.$this->arrtolist($element, false).'</li>';
 			} elseif(!empty($element)) {
 				if(filter_var($element, FILTER_VALIDATE_URL)) {
 					if(!strstr($element, 'http')) {
