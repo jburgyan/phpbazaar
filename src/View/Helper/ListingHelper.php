@@ -42,7 +42,7 @@ class ListingHelper extends Helper\HtmlHelper {
 		}
 	}
 
-	public function printimages($images, $size = 'large', $options = array()) {
+	public function printimages($images, $size = 'large', $options = array(), $print = true) {
 		if(!is_array($images)) {
 			$images = $this->pg_array_parse($images);
 		}
@@ -65,16 +65,23 @@ class ListingHelper extends Helper\HtmlHelper {
 						}
 					}
 					if(is_file($path)) {
-						echo $this->image('ob/'.$filename, $options);
+						if($print) {
+							echo $this->image('ob/'.$filename, $options);
+						} else {
+							$this->Url->image('ob/'.$filename, $options);
+						}
 					}
 				}
 			}
+		}
+		if(!$print) {
+			return null;
 		}
 	}
 
 	public function pg_array_parse( $literal ) {
 		if ( $literal == '' ) {
-			return;
+			return null;
 		}
 		preg_match_all( '/(?<=^\{|,)(([^,"{]*)|\s*"((?:[^"\\\\]|\\\\(?:.|[0-9]+|x[0-9a-f]+))*)"\s*)(,|(?<!^\{)(?=\}$))/i', $literal, $matches, PREG_SET_ORDER );
 		$values = [];

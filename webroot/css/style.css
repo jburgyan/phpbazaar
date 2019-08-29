@@ -522,3 +522,9 @@ table td {
     vertical-align: top;
     word-break: break-all;
 }
+
+.vendors .vendor-header {
+    max-width: 100%;
+    min-width: 100%;
+    margin-bottom: 2em;
+}

@@ -5,9 +5,9 @@
  * @var \App\Model\Entity\Listing[]|\Cake\Collection\CollectionInterface $listings
  */
 
-//print_r($vendor);
 ?>
 <div class="vendors view columns content">
+	<?php $this->Listing->printimages($vendor->headerHashes, 'original', array('class' => 'vendor-header')); ?>
     <h3><?= h($vendor->name) ?></h3>
     <table class="vertical-table">
         <tr>
@@ -21,10 +21,6 @@
         <tr>
             <th scope="row"><?= __('AvatarHashes') ?></th>
 	        <td><?php $this->Listing->printimages($vendor->avatarHashes, 'medium'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('HeaderHashes') ?></th>
-	        <td><?php $this->Listing->printimages($vendor->headerHashes, 'large'); ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Stats') ?></th>
