@@ -52,7 +52,7 @@ class ListingHelper extends Helper\HtmlHelper {
 			if(!empty($image[$size])) {
 				$path = WWW_ROOT.DS.'img'.DS.$image['filename'].'_'.$size.'.png';
 				if(!is_file($path)) {
-					$imagedata = @file_get_contents("https://bazaar.blockstamp.market/api/returnSingleImage/".$image[$size]);
+					$imagedata = @file_get_contents("http://localhost:4002/ipfs/".$image[$size]."?usecache=false");
 					if(!empty($imagedata)) {
 						file_put_contents($path, $imagedata);
 					}
