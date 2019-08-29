@@ -52,7 +52,11 @@ class ListingHelper extends Helper\HtmlHelper {
 			foreach ($images as $image) {
 				if(!empty($image[$size])) {
 					$filename = $image[$size].'_'.$size;
-					$path = WWW_ROOT.'img'.DS.'ob'.DS.$filename;
+					$obdir = $path = WWW_ROOT.'img'.DS.'ob';
+					if(!is_dir($obdir)) {
+						mkdir($obdir);
+					}
+					$path = $obdir.DS.$filename;
 					if(!is_file($path)) {
 						$imagedata = @file_get_contents("http://localhost:4002/ipfs/".$image[$size]."?usecache=false");
 						if(!empty($imagedata)) {
