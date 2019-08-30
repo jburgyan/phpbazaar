@@ -4,9 +4,27 @@ $this->assign('title', 'Home');
 <div class="row">
 	<div class="columns large-12">
 		<div class="aboutPageContainer">
-			<h1> What is BlockStamp OpenBazaar Explorer?</h1>
+			<h1> BlockStamp OpenBazaar Explorer</h1>
 			<p>
-				The BlockStamp OpenBazaar Explorer is a viewer of products listed on the distributed OpenBazzaar platform.
+				The BlockStamp OpenBazaar Explorer is a viewer of products listed on the distributed OpenBazzaar marketplace.
+			</p>
+			<h3> What is OpenBazaar? </h3>
+			<p>
+				OpenBazaar is a new peer-to-peer decentralized e-commerce marketplace. It is the first marketplace of its kind. It is controlled by no one and people can transact in any cryptocurrency and with anyone. OpenBazaar has no fees and no restrictions.
+				There isn’t an organization, company, or individual managing OpenBazaar so there’s nobody to pay. The system works by allowing individuals to connect to each other to buy and sell goods without a middleman. The terms and conditions of each individual listing is up to the vendor, they will vary from one person to the next.
+				<a class="clickableLink" href="https://openbazaar.zendesk.com/hc/en-us/articles/208020193-What-is-OpenBazaar-" target="_blank"> Learn more here.</a>
+			</p>
+			<h3> How do I buy something through OpenBazaar?  </h3>
+			<p>
+				Right now, you will have to download the OpenBazaar desktop application to buy goods on OpenBazaar.
+				<a class="clickableLink" href="https://openbazaar.zendesk.com/hc/en-us/articles/202587109-How-do-I-install-and-use-OpenBazaar-" target="_blank"> Check this guide out to get setup. </a>
+			</p>
+			<h3> Can I use this explorer in the OpenBazaar application? </h3>
+			<p>
+				You can add this explorer to your openbazaaar application using this URL:
+			</p>
+			<pre>https://bazaar.blockstamp.market/api/search</pre>
+			<h3> How can I promote my products here? </h3>
 				The search ranking on the Explorer can be influenced by burning BlockStamps (BST).
 				<a class="clickableLink" href="https://blockstamp.info" target="_blank">BlockStamp</a> is a cryptocurrency available on many exchanges.
 			</p>
@@ -28,45 +46,9 @@ $this->assign('title', 'Home');
 				<a class="clickableLink" href="https://explorer.blockstamp.info/tx/ee6381b05cd9a9f8df06a96d00b528df23621f8ae44bf321b9190ef18d12e426" target="_blank">example</a>)
 				The Blockstamp OpenBazaar Explorer monitors the transactions and updates the promotion budget for the product. The promotion fee is respected on search queries for the period of 30 days.
 			</p>
-			<h3> What is OpenBazaar?
-			</h3>
-			<p>
-				OpenBazaar is a new peer-to-peer decentralized e-commerce marketplace. It is the first marketplace of its kind. It is controlled by no one and people can transact in any cryptocurrency and with anyone. OpenBazaar has no fees and no restrictions.
-				<a class="clickableLink" href="https://openbazaar.zendesk.com/hc/en-us/articles/208020193-What-is-OpenBazaar-" target="_blank"> Learn more here.</a>
-			</p>
-			<h3>
-				Why are there no fees or limits on what can be bought and sold?
-			</h3>
-			<p>
-				There isn’t an organization, company, or individual managing OpenBazaar so there’s nobody to pay. The system works by allowing individuals to connect to each other to buy and sell goods without a middleman. The terms and conditions of each individual listing is up to the vendor, they will vary from one person to the next.
-			</p>
-			<h3>
-				How do I buy something through OpenBazaar?
-			</h3>
-			<p>
-				Right now, you will have to download the OpenBazaar desktop application to buy goods on OpenBazaar.
-				<a class="clickableLink" href="https://openbazaar.zendesk.com/hc/en-us/articles/202587109-How-do-I-install-and-use-OpenBazaar-" target="_blank"> Check this guide out to get setup. </a> Web buying is currently being worked on and will be available soon by the OB1 team.
-			</p>
-			<h3>
-				Who built this project?
-			</h3>
-			<p>
-				This service is based on RawFlood, an
-				<a class="clickableLink" href="https://github.com/rodkeys/rawflood" target="_blank">open source listing explorer </a> for the OpenBazaar marketplace. This project was built by volunteers.
-			</p>
-			<h3>
-				I'm offended by a listing/want a listing taken down!
-			</h3>
+			<h3> I'm offended by a listing/want a listing taken down! </h3>
 			<p>
 				Due to the nature of OpenBazaar, listings cannot be taken down from the network. In order to hide a listing on this site you will have to reach out to the webmaster of this site and it will be their decision on whether or not to remove a listing.
-			</p>
-			<h3> Can I use the explorer in the OpenBazaar application?
-			</h3>
-			<p>
-				You can add this explorer to your openbazaaar application using this URL:
-			</p>
-			<pre>https://bazaar.blockstamp.market/api/search</pre>
-			<p>
 			</p>
 		</div>
 	</div>
