@@ -47,7 +47,7 @@ class ListingHelper extends Helper\HtmlHelper {
 		$list = '';
 		foreach ($elements as $label => $element) {
 			$label = Inflector::humanize(preg_replace('/(?<!\ )[A-Z]/', ' $0', $label));
-			if(is_array($element)) {
+			if(is_array($element) && !empty($element)) {
 				if(is_numeric($label)) {
 					$list .= '<li>'.$this->arrtolist($element, false).'</li>';
 				} else {
