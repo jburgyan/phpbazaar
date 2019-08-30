@@ -46,8 +46,13 @@ class ListingHelper extends Helper\HtmlHelper {
 	public function arrtolist(array $elements, $print = true) {
 		$list = '';
 		foreach ($elements as $label => $element) {
+			$label = Inflector::humanize(preg_replace('/(?<!\ )[A-Z]/', ' $0', $label));
 			if(is_array($element)) {
-				$list .= '<li>'.$this->arrtolist($element, false).'</li>';
+				if(is_numeric($label)) {
+					$list .= '<li>'.$this->arrtolist($element, false).'</li>';
+				} else {
+					$list .= '<li><strong>'.$label.'</strong>: '.$this->arrtolist($element, false).'</li>';
+				}
 			} elseif(!empty($element)) {
 				if(filter_var($element, FILTER_VALIDATE_URL)) {
 					if(!strstr($element, 'http')) {
@@ -58,7 +63,7 @@ class ListingHelper extends Helper\HtmlHelper {
 				if(filter_var($element, FILTER_VALIDATE_EMAIL)) {
 					$element = '<a href="mailto:'.$element.'">'.$element.'</a>';
 				}
-				$list .= '<li><strong>'.Inflector::humanize(preg_replace('/(?<!\ )[A-Z]/', ' $0', $label)).'</strong>: '.$element.'</li>';
+				$list .= '<li><strong>'.$label.'</strong>: '.$element.'</li>';
 			}
 		}
 		if(!empty($list)) {
