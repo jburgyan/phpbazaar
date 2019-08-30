@@ -59,9 +59,10 @@ class ListingHelper extends Helper\HtmlHelper {
 						$element = 'http://'.$element;
 					}
 					$element = '<a href="'.$element.'" target="_blank">'.$element.'</a>';
-				}
-				if(filter_var($element, FILTER_VALIDATE_EMAIL)) {
+				} elseif(filter_var($element, FILTER_VALIDATE_EMAIL)) {
 					$element = '<a href="mailto:'.$element.'">'.$element.'</a>';
+				} else {
+					$element = ucwords($element);
 				}
 				$list .= '<li><strong>'.$label.'</strong>: '.$element.'</li>';
 			}
