@@ -8,14 +8,17 @@
 	<h3><?= __('Vendors') ?></h3>
 
 <?php foreach ($vendors as $vendor): ?>
-	<div class="vendor">
+	<span class="vendor">
 		<div class="image">
 			<?php $this->Listing->printimages($vendor->avatarHashes, 'small', array('class' => 'vendor-avatar')); ?>
 		</div>
 		<div class="title">
 			<?= $this->Html->link($vendor->name, ['controller' => 'Vendors', 'action' => 'view', $vendor->peerId]) ?>
 		</div>
-	</div>
+		<div class="shortdescription">
+		        <?= $this->Text->autoParagraph($vendor->shortDescription); ?>
+		</div>
+	</span>
 <?php endforeach; ?>
 
     <div class="paginator">

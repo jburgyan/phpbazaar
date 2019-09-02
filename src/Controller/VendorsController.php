@@ -20,7 +20,9 @@ class VendorsController extends AppController {
 	 */
 	public function index() {
 
-		$this->paginate = [];
+		$this->paginate = [
+			'order' => [ 'Vendors.fee' => 'desc' ]
+			];
 		$currency       = $this->request->getQuery( 'cu' );
 		$connection     = ConnectionManager::get( 'default' );
 		if ( $currency ) {

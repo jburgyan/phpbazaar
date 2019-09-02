@@ -535,11 +535,63 @@ table td {
 
 
 
-div .listings {
+span.vendor {
+  padding-top: 10px;
+  padding-right: 10px;
+  position:relative;
+  display:inline-block;
+  height:120px;
+  width:480px;
+  overflow:hidden;
+}
+span.vendor div.image {
+  padding-right: 10px;
+  position:relative;
+  display:block;
+  float:left;
+  height:128px;
+  width:128px;
+  overflow:hidden;
+}
+
+span.listing {
+  padding-top: 10px;
+  padding-right: 10px;
+  position:relative;
+  display:inline-block;
+  height:240px;
+  width:480px;
+  overflow:hidden;
+}
+span.listing div.image {
+  padding-right: 10px;
+  position:relative;
   display:block;
   float:left;
   height:240px;
-  width:480px;
-
-
+  width:240px;
+  overflow:hidden;
+}
+span.listing div.unmoderated {
+  padding-left: 10px;
+  position:relative;
+  display:inline-block;
+  float:right;
+  color:red
+}
+span.listing div.moderated {
+  padding-left: 10px;
+  position:relative;
+  display:inline-block;
+  float:right;
+}
+span.listing div.fee a {
+  padding-left: 10px;
+  position:relative;
+  display:inline-block;
+  float:right;
+  color:#E0E0E0;
+}
+span.listing div.vendor a {
+  color:orange;
 }
