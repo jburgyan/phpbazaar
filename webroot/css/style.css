@@ -531,3 +531,15 @@ table td {
 .vendors .vendor-avatar {
     margin-bottom: 1em;
 }
+
+
+
+
+div .listings {
+  display:block;
+  float:left;
+  height:240px;
+  width:480px;
+
+
+}

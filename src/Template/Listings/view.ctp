@@ -6,155 +6,13 @@
 ?>
 <div class="listings view columns content">
     <h3><?= $listing->title ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Hash') ?></th>
-            <td><?= h($listing->hash) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('IdentityPubKey') ?></th>
-            <td><?= h($listing->identityPubKey) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('IdentityBitcoinPubKey') ?></th>
-            <td><?= h($listing->identityBitcoinPubKey) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('IdentityBitcoinSig') ?></th>
-            <td><?= h($listing->identityBitcoinSig) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('ContractType') ?></th>
-            <td><?= h($listing->contractType) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Format') ?></th>
-            <td><?= h($listing->format) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Expiry') ?></th>
-            <td><?= h($listing->expiry) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('AcceptedCurrencies') ?></th>
-	        <td><?php $this->Listing->arrtolinks($listing->acceptedCurrencies, 'cu', 'Vendors'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('PricingCurrency') ?></th>
-            <td><?= h($listing->pricingCurrency) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Language') ?></th>
-            <td><?= h($listing->language) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('CoinType') ?></th>
-            <td><?= h($listing->coinType) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Price') ?></th>
-            <td><?php $this->Listing->price($listing->price, $listing->contractType); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Tags') ?></th>
-            <td><?php $this->Listing->arrtolinks($listing->tags, 't'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Images') ?></th>
-            <td><?php $this->Listing->printimages($listing->images, 'large'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Thumbnail') ?></th>
-	        <td><?php $this->Listing->printimages($listing->thumbnail, 'small'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Categories') ?></th>
-            <td><?php $this->Listing->arrtolinks($listing->categories); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Condition') ?></th>
-            <td><?= h($listing->condition) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Options') ?></th>
-            <td><?= h($listing->options) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Skus') ?></th>
-            <td><?= h($listing->skus) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('ShippingOptions') ?></th>
-            <td><pre><?= print_r($this->Listing->pg_array_parse($listing->shippingOptions), true) ?></pre></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Coupons') ?></th>
-            <td><?= h($listing->coupons) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Moderators') ?></th>
-            <td><?= h($listing->moderators) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Signature') ?></th>
-            <td><?= h($listing->signature) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Vendor') ?></th>
-            <td><?= $listing->has('vendor') ? $this->Html->link($listing->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $listing->vendor->peerId]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Version') ?></th>
-            <td><?= $this->Number->format($listing->version) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('EscrowTimeoutHours') ?></th>
-            <td><?= $this->Number->format($listing->escrowTimeoutHours) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('CoinDivisibility') ?></th>
-            <td><?= $this->Number->format($listing->coinDivisibility) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('PriceModifier') ?></th>
-            <td><?= $this->Number->format($listing->priceModifier) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Grams') ?></th>
-            <td><?= $this->Number->format($listing->grams) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('AverageRating') ?></th>
-            <td><?= $this->Number->format($listing->averageRating) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('RatingCount') ?></th>
-            <td><?= $this->Number->format($listing->ratingCount) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Fee') ?></th>
-            <td><?= $this->Number->format($listing->fee) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('CreatedAt') ?></th>
-            <td><?= h($listing->createdAt) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('UpdatedAt') ?></th>
-            <td><?= h($listing->updatedAt) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Nsfw') ?></th>
-            <td><?= $listing->nsfw ? __('Yes') : __('No'); ?></td>
-        </tr>
-    </table>
     <div class="row">
-        <h4><?= __('SlugPeerId') ?></h4>
-        <?= $this->Text->autoParagraph(h($listing->slugPeerId)); ?>
+        <h4><?= __('Price') ?></h4>
+        <?php $this->Listing->price($listing->price, $listing->contractType); ?>
     </div>
     <div class="row">
-        <h4><?= __('Title') ?></h4>
-        <?= $this->Text->autoParagraph(h($listing->title)); ?>
+        <h4><?= __('Images') ?></h4>
+        <?php $this->Listing->printimages($listing->images, 'large'); ?>
     </div>
     <div class="row">
         <h4><?= __('Description') ?></h4>
@@ -168,7 +26,23 @@
         <h4><?= __('RefundPolicy') ?></h4>
         <?= $this->Text->autoParagraph($listing->refundPolicy); ?>
     </div>
-    <div class="related">
+    <div class="row">
+        <h4><?= __('Moderators') ?></h4>
+        <?php $this->Listing->arrtolinks($listing->moderators); ?>
+    </div>
+    <div class="row">
+        <h4><?= __('Tags') ?></h4>
+        <?php $this->Listing->arrtolinks($listing->tags, 't'); ?>
+    </div>
+    <div class="row">
+        <h4><?= __('Categories') ?></h4>
+        <?php $this->Listing->arrtolinks($listing->categories); ?>
+    </div>
+    <div class="row">
+        <h4><?= __('Vendor') ?></h4>
+        <?= $listing->has('vendor') ? $this->Html->link($listing->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $listing->vendor->peerId]) : '' ?>
+    </div>
+    <div class="row">
         <h4><?= __('Ratings') ?></h4>
         <?php if (!empty($listing->ratings)): ?>
         <table cellpadding="0" cellspacing="0">
@@ -226,5 +100,13 @@
             <?php endforeach; ?>
         </table>
         <?php endif; ?>
+    </div>
+    <div class="row">
+        <h4><?= __('Promotion Fee') ?></h4>
+        <?= $this->Number->format($listing->fee) ?>
+    </div>
+    <div class="row">
+        <h4><?= __('Updated At') ?></h4>
+        <?= h($listing->updatedAt) ?>
     </div>
 </div>

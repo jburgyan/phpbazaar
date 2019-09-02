@@ -9,9 +9,28 @@
 <div class="vendors view columns content">
 	<?php $this->Listing->printimages($vendor->headerHashes, 'large', array('class' => 'vendor-header')); ?>
     <h3><?= h($vendor->name) ?></h3>
+    <div class="row">
+        <h4><?= __('Location') ?></h4>
+        <?= $this->Text->autoParagraph(h($vendor->location)); ?>
+    </div>
+    <div class="row">
+        <h4><?= __('ShortDescription') ?></h4>
+        <?= $this->Text->autoParagraph($vendor->shortDescription); ?>
+    </div>
+    <div class="row">
+        <h4><?= __('About') ?></h4>
+        <?= $this->Text->autoParagraph($vendor->about); ?>
+    </div>
+    <div class="row">
+        <h4><?= __('Contact Info') ?></h4>
 	<?php
-	$this->Listing->printimages($vendor->avatarHashes, 'small', array('class' => 'vendor-avatar'));
+	//$this->Listing->printimages($vendor->avatarHashes, 'small', array('class' => 'vendor-avatar'));
 	$this->Listing->arrtolist($vendor->contactInfo);
+        ?>
+    </div>
+    <div class="row">
+        <h4><?= __('Statistics') ?></h4>
+	<?php
 	$stats = $this->Listing->arrtolist($vendor->stats, false);
 	if(!empty($stats)) {
 		?>
@@ -20,45 +39,8 @@
 		echo $stats;
 	}
 	?>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('PeerId') ?></th>
-            <td><?= h($vendor->peerId) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('BitcoinPubkey') ?></th>
-            <td><?= h($vendor->bitcoinPubkey) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Currencies') ?></th>
-            <td><?php $this->Listing->arrtolinks($vendor->currencies, 'cu', 'Vendors'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Fee') ?></th>
-            <td><?= $this->Number->format($vendor->fee) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('CreatedAt') ?></th>
-            <td><?= h($vendor->createdAt) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('UpdatedAt') ?></th>
-            <td><?= h($vendor->updatedAt) ?></td>
-        </tr>
-    </table>
-    <div class="row">
-        <h4><?= __('Location') ?></h4>
-        <?= $this->Text->autoParagraph(h($vendor->location)); ?>
     </div>
-    <div class="row">
-        <h4><?= __('About') ?></h4>
-        <?= $this->Text->autoParagraph($vendor->about); ?>
-    </div>
-    <div class="row">
-        <h4><?= __('ShortDescription') ?></h4>
-        <?= $this->Text->autoParagraph($vendor->shortDescription); ?>
-    </div>
-    <div id="related" class="related">
+    <div id="related" class="row">
         <h4><?= __('Products') ?></h4>
 	    <?php
 	    echo $this->element('products', [
@@ -66,5 +48,13 @@
 		    "vendor_id" => $vendor->peerId
 	    ]);
 	    ?>
+    </div>
+    <div class="row">
+        <h4><?= __('Total Promotion Fee') ?></h4>
+        <?= $this->Number->format($vendor->fee) ?>
+    </div>
+    <div class="row">
+        <h4><?= __('Updated At') ?></h4>
+        <?= h($vendor->updatedAt) ?>
     </div>
 </div>

@@ -4,12 +4,6 @@
  * @var \App\Model\Entity\Listing[]|\Cake\Collection\CollectionInterface $listings
  * @var string $vendor_id
  */
-if(empty($vendor)) {
-	$options = [];
-} else {
-	// $options = [ 'url'=> [ '#' => 'related' ] ];
-	$options = [];
-}
 ?>
 <?php foreach ($listings as $listing): ?>
 	<div class="listing">
@@ -27,6 +21,12 @@ if(empty($vendor)) {
 		</div>
 		<div class="fee">
 			<?= $this->Number->format($listing->fee) ?>
+		</div>
+		<div class="moderators">
+			<?php if($listing->moderators != '{}'){ ?>
+				moderated
+			<?php }else{ ?>
+			<?php } ?>
 		</div>
 	</div>
 <?php endforeach; ?>
