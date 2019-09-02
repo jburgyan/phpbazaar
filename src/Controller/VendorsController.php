@@ -21,14 +21,19 @@ class VendorsController extends AppController {
 	public function index() {
 
 		$this->paginate = [
-			'order' => [ 'Vendors.fee' => 'desc' ]
-			];
+			'order' => [ 'Vendors.fee' => 'desc' ],
+			'conditions' => []
+		];
 		$currency       = $this->request->getQuery( 'cu' );
+		$search = $this->request->getQuery('s');
 		$connection     = ConnectionManager::get( 'default' );
 		if ( $currency ) {
-			$this->paginate['conditions'] = [
-				$connection->quote( $currency ) . " = ANY(currencies)"
-			];
+			$this->paginate['conditions'][] =
+				$connection->quote( $currency ) . " = ANY(currencies)";
+		}
+		if($search) {
+			$this->paginate['conditions'][] =
+				"_search @@ plainto_tsquery('english', ".$connection->quote($search).")";
 		}
 		$vendors = $this->paginate( $this->Vendors );
 

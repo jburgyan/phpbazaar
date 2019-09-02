@@ -22,20 +22,26 @@ class ListingsController extends AppController {
 	 */
 	public function index() {
 		$this->paginate = [
-			'contain' => [ 'Vendors' ]
+			'contain' => [ 'Vendors' ],
+			'conditions' => [],
+			'order' => [
+				'Listings.fee' => 'DESC'
+			]
 		];
 		$category = $this->request->getQuery('c');
 		$tag = $this->request->getQuery('t');
+		$search = $this->request->getQuery('s');
 		$connection = ConnectionManager::get( 'default' );
 		if($category) {
-			$this->paginate['conditions'] = [
-				$connection->quote($category)." = ANY(categories)"
-			];
+			$this->paginate['conditions'][] =
+				$connection->quote($category)." = ANY(categories)";
 		}
 		if($tag) {
-			$this->paginate['conditions'] = [
-				$connection->quote($tag)." = ANY(tags)"
-			];
+			$this->paginate['conditions'][] = $connection->quote($tag)." = ANY(tags)";
+		}
+		if($search) {
+			$this->paginate['conditions'][] =
+				"_search @@ plainto_tsquery('english', ".$connection->quote($search).")";
 		}
 		$listings       = $this->paginate( $this->Listings );
 

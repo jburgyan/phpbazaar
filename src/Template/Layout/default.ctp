@@ -52,6 +52,21 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
             </li>
         </ul>
         <div class="top-bar-section">
+	        <?php
+	        if(in_array($this->request->getParam('controller'), ['Listings', 'Vendors'])) {
+	        	?>
+		        <div class="search">
+		        <form action="<?=$this->Url->build([
+			        'controller' => $this->request->getParam('controller'),
+			        'action' => 'index'
+		        ])?>" method="get">
+			        <input type="text" id="s" name="s" placeholder="<?=__('Search'); ?>" value="<?=$this->request->getQuery( 's' )?>">
+			        <button type="submit"><?=__('Search'); ?></button>
+		        </form>
+		        </div>
+	            <?php
+	        }
+	        ?>
             <ul class="right">
                 <li><?=$this->Html->link(
 		                __( 'Products' ),
