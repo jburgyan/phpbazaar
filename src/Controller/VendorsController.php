@@ -33,7 +33,7 @@ class VendorsController extends AppController {
 		}
 		if($search) {
 			$this->paginate['conditions'][] =
-				"_search @@ plainto_tsquery('english', ".$connection->quote($search).")";
+				"\"Vendors\".\"_search\" @@ plainto_tsquery('english', ".$connection->quote($search).")";
 		}
 		$vendors = $this->paginate( $this->Vendors );
 

@@ -41,7 +41,7 @@ class ListingsController extends AppController {
 		}
 		if($search) {
 			$this->paginate['conditions'][] =
-				"_search @@ plainto_tsquery('english', ".$connection->quote($search).")";
+				"\"Listings\".\"_search\" @@ plainto_tsquery('english', ".$connection->quote($search).")";
 		}
 		$listings       = $this->paginate( $this->Listings );
 
