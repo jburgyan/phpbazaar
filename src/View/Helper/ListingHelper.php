@@ -59,13 +59,21 @@ class ListingHelper extends Helper\HtmlHelper {
 	}
 
 	/**
-	 * @param array $elements
+	 * @param array | null $elements
 	 * @param bool  $print
 	 *
 	 * @return string|void
 	 */
-	public function arrtolist( array $elements, $print = true ) {
+	public function arrtolist( $elements, $print = true ) {
 		$list = '';
+		if(empty($elements)) {
+			if($print) {
+				echo $list;
+				return;
+			} else {
+				return $list;
+			}
+		}
 		foreach ( $elements as $label => $element ) {
 			$label = Inflector::humanize( preg_replace( '/(?<!\ )[A-Z]/', ' $0', $label ) );
 			if ( is_array( $element ) && ! empty( $element ) ) {

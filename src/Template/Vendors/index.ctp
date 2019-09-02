@@ -5,25 +5,19 @@
  */
 ?>
 <div class="vendors index columns content">
-    <h3><?= __('Vendors') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('currencies') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('updatedAt') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($vendors as $vendor): ?>
-            <tr>
-	            <td><?= $this->Html->link($vendor->name, ['controller' => 'Vendors', 'action' => 'view', $vendor->peerId]) ?></td>
-	            <td><?php $this->Listing->arrtolinks($vendor->currencies, 'cu', 'Vendors'); ?></td>
-                <td><?= h($vendor->updatedAt) ?></td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+	<h3><?= __('Vendors') ?></h3>
+
+<?php foreach ($vendors as $vendor): ?>
+	<div class="vendor">
+		<div class="image">
+			<?php $this->Listing->printimages($vendor->avatarHashes, 'small', array('class' => 'vendor-avatar')); ?>
+		</div>
+		<div class="title">
+			<?= $this->Html->link($vendor->name, ['controller' => 'Vendors', 'action' => 'view', $vendor->peerId]) ?>
+		</div>
+	</div>
+<?php endforeach; ?>
+
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>

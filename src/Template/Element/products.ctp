@@ -11,57 +11,26 @@ if(empty($vendor)) {
 	$options = [];
 }
 ?>
-<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-		<th scope="col"><?= $this->Paginator->sort('Listings.title', __('Product'), $options); ?></th>
-		<?php if(empty($vendor)) { ?>
-		<th scope="col"><?= $this->Paginator->sort('Listings.vendorPeerId', __('Vendor'), $options) ?></th>
-		<?php } ?>
-		<th scope="col"><?= $this->Paginator->sort('Listings.price', __('Price'), $options) ?></th>
-		<th scope="col"><?= $this->Paginator->sort('Listings.categories', __('Categories'), $options) ?></th>
-		<th scope="col"><?= $this->Paginator->sort('Listings.tags', __('Tags'), $options) ?></th>
-		<th scope="col"><?= $this->Paginator->sort('Listings.averageRating', __('Rating'), $options) ?></th>
-		<th scope="col"><?= $this->Paginator->sort('Listings.updatedAt', __('Updated'), $options) ?></th>
-	</tr>
-	</thead>
-	<tbody>
-	<?php foreach ($listings as $listing): ?>
-		<tr>
-			<td><?= $this->Html->link(
-					$listing->title,
-					[
-						'controller' => 'Listings',
-						'action'     => 'view',
-						$listing->slugPeerId
-					]
-				) ?></td>
-			<?php
-			if(empty($vendor)) {
-				?>
-				<td><?= $listing->has('vendor') ? $this->Html->link($listing->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $listing->vendor->peerId]) : '' ?></td>
-				<?php
-			}
-			?>
-			<td><?php $this->Listing->price($listing->price, $listing->contractType); ?></td>
-			<?php
-			if(empty($vendor)) {
-				?>
-				<td><?php $this->Listing->arrtolinks($listing->categories); ?></td>
-				<td><?php $this->Listing->arrtolinks($listing->tags, 't'); ?></td>
-			<?php } else {
-				?>
-				<td><?php $this->Listing->arrtolinks($listing->categories, 'c','Vendors', 'view', $vendor_id); ?></td>
-				<td><?php $this->Listing->arrtolinks($listing->tags, 't', 'Vendors', 'view', $vendor_id); ?></td>
-				<?php
-			}
-			?>
-			<td><?= $this->Number->format($listing->averageRating) ?></td>
-			<td><?= h($listing->updatedAt) ?></td>
-		</tr>
-	<?php endforeach; ?>
-	</tbody>
-</table>
+<?php foreach ($listings as $listing): ?>
+	<div class="listing">
+		<div class="image">
+			<?php $this->Listing->printimages($listing->thumbnail, 'small'); ?>
+		</div>
+		<div class="title">
+			<?= $this->Html->link( $listing->title, [ 'controller' => 'Listings', 'action'     => 'view', $listing->slugPeerId ]) ?>
+		</div>
+		<div class="price">
+			<?php $this->Listing->price($listing->price, $listing->contractType); ?>
+		</div>
+		<div class="vendor">
+			<?= $listing->has('vendor') ? $this->Html->link($listing->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $listing->vendor->peerId]) : '' ?>
+		</div>
+		<div class="fee">
+			<?= $this->Number->format($listing->fee) ?>
+		</div>
+	</div>
+<?php endforeach; ?>
+
 <div class="paginator">
 	<ul class="pagination">
 		<?= $this->Paginator->first('<< ' . __('first')) ?>
