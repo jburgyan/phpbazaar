@@ -37,9 +37,10 @@ legend {
     color:#15848F;
 }
 
+/* LESZEK
 .row {
     max-width: 80rem;
-}
+} */
 
 .actions.columns {
     margin-top:1rem;
@@ -532,8 +533,7 @@ table td {
     margin-bottom: 1em;
 }
 
-
-
+/* LESZEK */
 
 span.vendor {
   padding-top: 10px;
