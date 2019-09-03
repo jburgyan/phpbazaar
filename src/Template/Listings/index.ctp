@@ -5,7 +5,7 @@
  */
 ?>
 <div class="listings index columns content">
-    <h3><?= __('Products') ?></h3>
+    <!--h3><?= __('Products') ?></h3-->
     <?php
     echo $this->element('products', [
 	    "listings" => $listings

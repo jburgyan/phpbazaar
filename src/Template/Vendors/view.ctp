@@ -40,6 +40,14 @@
 	}
 	?>
     </div>
+    <div class="row">
+        <h4><?= __('Total Promotion Fee') ?></h4>
+        <?= $this->Number->format($vendor->fee) ?>
+    </div>
+    <div class="row">
+        <h4><?= __('Updated At') ?></h4>
+        <?= h($vendor->updatedAt) ?>
+    </div>
     <div id="related" class="row">
         <h4><?= __('Products') ?></h4>
 	    <?php
@@ -48,13 +56,5 @@
 		    "vendor_id" => $vendor->peerId
 	    ]);
 	    ?>
-    </div>
-    <div class="row">
-        <h4><?= __('Total Promotion Fee') ?></h4>
-        <?= $this->Number->format($vendor->fee) ?>
-    </div>
-    <div class="row">
-        <h4><?= __('Updated At') ?></h4>
-        <?= h($vendor->updatedAt) ?>
     </div>
 </div>

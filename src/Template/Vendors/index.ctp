@@ -5,7 +5,7 @@
  */
 ?>
 <div class="vendors index columns content">
-	<h3><?= __('Vendors') ?></h3>
+	<!--h3><?= __('Vendors') ?></h3-->
 
 <?php foreach ($vendors as $vendor): ?>
 	<span class="vendor">

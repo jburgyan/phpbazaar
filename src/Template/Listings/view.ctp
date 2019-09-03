@@ -5,14 +5,13 @@
  */
 ?>
 <div class="listings view columns content">
+    <div class="product-image">
+        <?php $this->Listing->printimages($listing->images, 'large'); ?>
+    </div>
     <h3><?= $listing->title ?></h3>
     <div class="row">
         <h4><?= __('Price') ?></h4>
         <?php $this->Listing->price($listing->price, $listing->contractType); ?>
-    </div>
-    <div class="row">
-        <h4><?= __('Images') ?></h4>
-        <?php $this->Listing->printimages($listing->images, 'large'); ?>
     </div>
     <div class="row">
         <h4><?= __('Description') ?></h4>

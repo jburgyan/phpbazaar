@@ -40,51 +40,25 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 </head>
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-	            <span><?=$this->Html->link(
-		            __( 'Home' ),
-		            [
-			            'controller' => 'Pages',
-			            'action'     => 'display',
-			            'home'
-		            ]
-	            ); ?></span>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-	        <?php
-	        if(in_array($this->request->getParam('controller'), ['Listings', 'Vendors'])) {
-	        	?>
-		        <div class="search">
-		        <form action="<?=$this->Url->build([
-			        'controller' => $this->request->getParam('controller'),
-			        'action' => 'index'
-		        ])?>" method="get">
-			        <input type="text" id="s" name="s" placeholder="<?=__('Search'); ?>" value="<?=$this->request->getQuery( 's' )?>">
-			        <button type="submit"><?=__('Search'); ?></button>
-		        </form>
-		        </div>
-	            <?php
-	        }
-	        ?>
-            <ul class="right">
-                <li><?=$this->Html->link(
-		                __( 'Products' ),
-		                [
-			                'controller' => 'Listings',
-			                'action'     => 'index'
-		                ]
-	                ); ?></li>
-	            <li><?=$this->Html->link(
-			            __( 'Vendors' ),
-			            [
-				            'controller' => 'Vendors',
-				            'action'     => 'index'
-			            ]
-		            ); ?></li>
-            </ul>
-        </div>
+	<span class="home">
+		<?=$this->Html->link( __( 'Home' ),['controller'=>'Pages','action'=>'display','home']); ?>
+	</span>
+	<span class="search">
+		<?php if($this->request->getParam('controller') == 'Vendors'){ ?>
+			<form action="<?=$this->Url->build([ 'controller' => 'Vendors', 'action' => 'index' ])?>" method="get">
+		<?php } else { ?>
+			<form action="<?=$this->Url->build([ 'controller' => 'Listings', 'action' => 'index' ])?>" method="get">
+		<?php } ?>
+			<input type="text" id="s" name="s" placeholder="<?=($this->request->getParam('controller') == 'Vendors'?__('Search Vendors'):__('Search Products')); ?>" value="<?=$this->request->getQuery( 's' )?>">
+			<button type="submit"><?=__('Go'); ?></button>
+		</form>
+        </span>
+	<span class="links">
+		<?=$this->Html->link( __( 'Products' ), [ 'controller' => 'Listings', 'action'     => 'index' ], ['class' => ($this->request->getParam('controller') == 'Listings'?'now':'')]); ?>
+	</span>
+	<span class="links">
+		<?=$this->Html->link( __( 'Vendors' ), [ 'controller' => 'Vendors', 'action'     => 'index' ], ['class' => ($this->request->getParam('controller') == 'Vendors'?'now':'')]); ?>
+	</span>
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
