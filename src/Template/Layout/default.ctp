@@ -31,6 +31,7 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('base.css') ?>
+	<?= $this->Html->css('debug.css') ?>
     <?= $this->Html->css('style.css') ?>
 
     <?= $this->fetch('meta') ?>
