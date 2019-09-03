@@ -23,6 +23,7 @@ use MatthiasMullie\Minify;
 
 $minifier = new Minify\CSS();
 
+$cakeTitle = 'OpenBazaar by BlockStamp';
 $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products listed on the distributed OpenBazzaar platform. The search ranking on the Explorer can be influenced by burning BlockStamps (BST). BlockStamp is a cryptocurrency available on many exchanges.';
 ?><!doctype html>
 <html amp lang="en">
@@ -33,8 +34,7 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 	<script async src="https://cdn.ampproject.org/v0.js"></script>
 	<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
     <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
+	    <?= $cakeTitle ?> :: <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
     <?php
@@ -74,12 +74,8 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 			<button type="submit"><?=__('Go'); ?></button>
 		</form>
         </span>
-	<span class="links">
-		<?=$this->Html->link( __( 'Products' ), [ 'controller' => 'Listings', 'action'     => 'index' ], ['class' => ($this->request->getParam('controller') == 'Listings'?'now':'')]); ?>
-	</span>
-	<span class="links">
-		<?=$this->Html->link( __( 'Vendors' ), [ 'controller' => 'Vendors', 'action'     => 'index' ], ['class' => ($this->request->getParam('controller') == 'Vendors'?'now':'')]); ?>
-	</span>
+	    <span class="links <?=($this->request->getParam('controller') == 'Listings'?'now':'') ?>"><?=$this->Html->link( __( 'Products' ), [ 'controller' => 'Listings', 'action'     => 'index' ]); ?></span>
+	    <span class="links <?=($this->request->getParam('controller') == 'Vendors'?'now':'') ?>"><?=$this->Html->link( __( 'Vendors' ), [ 'controller' => 'Vendors', 'action'     => 'index' ]); ?></span>
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
