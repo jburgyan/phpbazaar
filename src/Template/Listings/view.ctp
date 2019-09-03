@@ -46,55 +46,23 @@
         <?php if (!empty($listing->ratings)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th scope="col"><?= __('RatingKey') ?></th>
-                <th scope="col"><?= __('BuyerBitcoinSig') ?></th>
-                <th scope="col"><?= __('BuyerPeerID') ?></th>
-                <th scope="col"><?= __('BuyerBitcoinPubKey') ?></th>
-                <th scope="col"><?= __('BuyerIdentityPubKey') ?></th>
-                <th scope="col"><?= __('BuyerSig') ?></th>
-                <th scope="col"><?= __('CustomerServiceScore') ?></th>
-                <th scope="col"><?= __('DeliverySpeedScore') ?></th>
-                <th scope="col"><?= __('DescriptionScore') ?></th>
-                <th scope="col"><?= __('OverallScore') ?></th>
+                <th scope="col"><?= __('Buyer') ?></th>
+                <th scope="col"><?= __('Customer Service Score') ?></th>
+                <th scope="col"><?= __('Delivery SpeedS core') ?></th>
+                <th scope="col"><?= __('Description Score') ?></th>
+                <th scope="col"><?= __('Overall Score') ?></th>
                 <th scope="col"><?= __('Review') ?></th>
-                <th scope="col"><?= __('Timestamp') ?></th>
-                <th scope="col"><?= __('VendorBitcoinSig') ?></th>
-                <th scope="col"><?= __('VendorPeerID') ?></th>
-                <th scope="col"><?= __('VendorBitcoinPubKey') ?></th>
-                <th scope="col"><?= __('VendorIdentityKey') ?></th>
-                <th scope="col"><?= __('VendorSigMetadata') ?></th>
-                <th scope="col"><?= __('Signature') ?></th>
-                <th scope="col"><?= __('Raw') ?></th>
-                <th scope="col"><?= __('Misc') ?></th>
-                <th scope="col"><?= __('CreatedAt') ?></th>
-                <th scope="col"><?= __('UpdatedAt') ?></th>
-                <th scope="col"><?= __('ListingSlugPeerId') ?></th>
+                <th scope="col"><?= __('Date') ?></th>
             </tr>
             <?php foreach ($listing->ratings as $ratings): ?>
             <tr>
-                <td><?= h($ratings->ratingKey) ?></td>
-                <td><?= h($ratings->buyerBitcoinSig) ?></td>
-                <td><?= h($ratings->buyerPeerID) ?></td>
-                <td><?= h($ratings->buyerBitcoinPubKey) ?></td>
-                <td><?= h($ratings->buyerIdentityPubKey) ?></td>
-                <td><?= h($ratings->buyerSig) ?></td>
+                <td><?= $this->Html->link($ratings->buyerPeerID, ['controller' => 'Vendors', 'action' => 'view', $ratings->buyerPeerID]); ?></td>
                 <td><?= h($ratings->customerServiceScore) ?></td>
                 <td><?= h($ratings->deliverySpeedScore) ?></td>
                 <td><?= h($ratings->descriptionScore) ?></td>
                 <td><?= h($ratings->overallScore) ?></td>
-                <td><?= h($ratings->review) ?></td>
-                <td><?= h($ratings->timestamp) ?></td>
-                <td><?= h($ratings->vendorBitcoinSig) ?></td>
-                <td><?= h($ratings->vendorPeerID) ?></td>
-                <td><?= h($ratings->vendorBitcoinPubKey) ?></td>
-                <td><?= h($ratings->vendorIdentityKey) ?></td>
-                <td><?= h($ratings->vendorSigMetadata) ?></td>
-                <td><?= h($ratings->signature) ?></td>
-                <td><?= h($ratings->raw) ?></td>
-                <td><?= h($ratings->misc) ?></td>
-                <td><?= h($ratings->createdAt) ?></td>
+                <td><?= $ratings->review ?></td>
                 <td><?= h($ratings->updatedAt) ?></td>
-                <td><?= h($ratings->listingSlugPeerId) ?></td>
             </tr>
             <?php endforeach; ?>
         </table>
