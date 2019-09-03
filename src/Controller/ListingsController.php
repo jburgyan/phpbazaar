@@ -26,7 +26,8 @@ class ListingsController extends AppController {
 			'conditions' => [],
 			'order' => [
 				'Listings.fee' => 'DESC'
-			]
+			],
+			'limit' => 60
 		];
 		$category = $this->request->getQuery('c');
 		$tag = $this->request->getQuery('t');

@@ -22,7 +22,8 @@ class VendorsController extends AppController {
 
 		$this->paginate = [
 			'order' => [ 'Vendors.fee' => 'desc' ],
-			'conditions' => []
+			'conditions' => [],
+			'limit' => 60
 		];
 		$currency       = $this->request->getQuery( 'cu' );
 		$search = $this->request->getQuery('s');
