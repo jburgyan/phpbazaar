@@ -1,3 +1,8 @@
+/* BASIC */
+a {
+  text-decoration:none;
+}
+
 /* TOP BAR */
 
 nav {
@@ -13,8 +18,8 @@ nav {
 nav span {
   position:relative;
   display:inline-block;
-  padding-left:1rem;
-  padding-right:1rem;
+  margin-left:1rem;
+  margin-right:1rem;
 }
 nav span.home {
   float:left;
@@ -34,11 +39,10 @@ nav button {
   background-color:#DDD;
 }
 nav a {
-  text-decoration:none;
   color:red;
 }
-nav a.now {
-  text-decoration:underline red dashed;
+nav span.now {
+  border-bottom: dashed 1px red;
 }
 nav input::-webkit-input-placeholder { /* Edge */
   color: #FFF;
@@ -71,13 +75,22 @@ div.product-image {
 }
 
 img {
+  width:auto;
+  height:auto;
+}
+  
+img.vendor-header {
   width:100%;
   height: auto;
 }
-  
+
 div.product-image img {
   height: 480px;
   width: auto;
+}
+span.listing div.image img {
+  height: auto;
+  width: 240px;
 }
 
 /* JOZSEF */
@@ -169,6 +182,9 @@ span.listing div.image {
   width:240px;
   overflow:hidden;
   background-color:#F8F8F8;
+}
+span.listing div.price {
+  margin-top: 0.2rem;
 }
 span.listing div.unmoderated {
   margin-left: 1rem;

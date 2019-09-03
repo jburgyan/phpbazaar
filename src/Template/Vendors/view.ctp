@@ -14,7 +14,7 @@
         <?= $this->Text->autoParagraph(h($vendor->location)); ?>
     </div>
     <div class="row">
-        <h4><?= __('ShortDescription') ?></h4>
+        <h4><?= __('Short Description') ?></h4>
         <?= $this->Text->autoParagraph($vendor->shortDescription); ?>
     </div>
     <div class="row">
@@ -42,7 +42,7 @@
     </div>
     <div class="row">
         <h4><?= __('Total Promotion Fee') ?></h4>
-        <?= $this->Number->format($vendor->fee) ?>
+        <?= $this->Number->format($vendor->fee) ?> BST
     </div>
     <div class="row">
         <h4><?= __('Updated At') ?></h4>
