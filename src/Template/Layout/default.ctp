@@ -33,6 +33,11 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 	<link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
 	<script async src="https://cdn.ampproject.org/v0.js"></script>
 	<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+	<?php
+	if(in_array($this->request->getParam('controller'), array('Listings', 'Vendors'))) {
+		?><script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script><?php
+	}
+	?>
 	<title><?= $cakeTitle ?> :: <?= $this->fetch('title') ?></title>
     <?= $this->Html->meta('icon') ?>
     <?php
@@ -69,8 +74,7 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 			><form action="<?=$this->Url->build([ 'controller' => 'Listings', 'action' => 'index' ])?>" method="get" target="_top"
 		<?php } ?>
 			><table><tr><td class="text"
-			><input type="text" id="s" name="s" placeholder="<?=($this->request->getParam('controller') == 'Vendors'?__('Search Vendors'):__('Search Products')); ?>" value="<?=$this->request->getQuery( 's' )?>"
-i			></td><td
+			><input type="text" id="s" name="s" placeholder="<?=($this->request->getParam('controller') == 'Vendors'?__('Search Vendors'):__('Search Products')); ?>" value="<?=$this->request->getQuery( 's' )?>"></td><td
 			><button type="submit"><?=__('Search'); ?></button
 			></tr></table
 		></form

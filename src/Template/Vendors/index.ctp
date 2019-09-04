@@ -16,18 +16,17 @@
 			<?= $this->Html->link($vendor->name, ['controller' => 'Vendors', 'action' => 'view', $vendor->peerId]) ?>
 		</div>
 		<div class="shortdescription">
-		        <?= $this->Text->autoParagraph($vendor->shortDescription); ?>
+		        <?= $this->Listing->html($vendor->shortDescription); ?>
 		</div>
 	</span>
 <?php endforeach; ?>
-
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<<') ?>
-            <?= $this->Paginator->prev('<') ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next('>') ?>
-            <?= $this->Paginator->last('>>') ?>
+            <?= str_replace('onclick="return false;"', '', $this->Paginator->first('<<')) ?>
+            <?= str_replace('onclick="return false;"', '', $this->Paginator->prev('<')) ?>
+            <?= str_replace('onclick="return false;"', '', $this->Paginator->numbers()) ?>
+            <?= str_replace('onclick="return false;"', '', $this->Paginator->next('>')) ?>
+            <?= str_replace('onclick="return false;"', '', $this->Paginator->last('>>')) ?>
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, {{current}} record(s) out of {{count}}')]) ?></p>
     </div>

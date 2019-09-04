@@ -11,15 +11,15 @@
     <h3><?= h($vendor->name) ?></h3>
     <div class="row">
         <h4><?= __('Location') ?></h4>
-        <?= $this->Text->autoParagraph(h($vendor->location)); ?>
+        <?= $this->Listing->html(h($vendor->location)); ?>
     </div>
     <div class="row">
         <h4><?= __('Short Description') ?></h4>
-        <?= $this->Text->autoParagraph($vendor->shortDescription); ?>
+        <?= $this->Listing->html($vendor->shortDescription); ?>
     </div>
     <div class="row">
         <h4><?= __('About') ?></h4>
-        <?= $this->Text->autoParagraph($vendor->about); ?>
+        <?= $this->Listing->html($vendor->about); ?>
     </div>
     <div class="row">
         <h4><?= __('Contact Info') ?></h4>

@@ -44,6 +44,7 @@ class ListingsController extends AppController {
 			$this->paginate['conditions'][] =
 				"\"Listings\".\"_search\" @@ plainto_tsquery('english', ".$connection->quote($search).")";
 		}
+
 		$listings       = $this->paginate( $this->Listings );
 
 		$this->set( compact( 'listings' ) );

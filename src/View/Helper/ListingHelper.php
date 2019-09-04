@@ -7,12 +7,27 @@ namespace App\View\Helper;
 
 use Cake\View\Helper;
 use Cake\Utility\Inflector;
+use Cake\View\Helper\TextHelper;
+use Cake\View\View;
+use DOMDocument;
 
 /**
  * Class ListingHelper
  * @package App\View\Helper
  */
 class ListingHelper extends Helper\HtmlHelper {
+
+	private $Text;
+
+	public function __construct( View $View, array $config = [] ) {
+		parent::__construct( $View, $config );
+		$this->Text = new TextHelper($View, $config);
+	}
+
+	public function html($html) {
+		$html = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $html);
+		return $this->Text->autoParagraph($html);
+	}
 
 	/**
 	 * @param array  $pricejson
@@ -121,6 +136,21 @@ class ListingHelper extends Helper\HtmlHelper {
 			$images = array( $images );
 		}
 		if ( ! empty( $images ) ) {
+			$filtered_images = [];
+			foreach ( $images as $image ) {
+				if ( ! empty( $image[ $size ] ) ) {
+					$filtered_images[] = $image;
+				}
+			}
+			$images = $filtered_images;
+			unset($filtered_images);
+			if(count($images) > 1) {
+				?>
+				<amp-carousel width="500" height="300" layout="responsive" type="slides" loop
+				autoplay
+				delay="5000">
+				<?php
+			}
 			foreach ( $images as $image ) {
 				if ( ! empty( $image[ $size ] ) ) {
 					$filename = $image[ $size ] . '_' . $size;
@@ -136,9 +166,18 @@ class ListingHelper extends Helper\HtmlHelper {
 						}
 					}
 					if ( is_file( $path ) ) {
-						echo $this->image( 'ob/' . $filename, $options );
+						$imageinfo = getimagesize($path);
+						?>
+						<amp-img src="<?php echo $this->Url->image('ob/' . $filename, $options); ?>" width="<?php echo $imageinfo[0]; ?>" height="<?php echo $imageinfo[1]; ?>" layout="responsive" alt=""></amp-img>
+						<?php
+						//echo $this->image( 'ob/' . $filename, $options );
 					}
 				}
+			}
+			if(count($images) > 1) {
+				?>
+				</amp-carousel>
+				<?php
 			}
 		}
 	}

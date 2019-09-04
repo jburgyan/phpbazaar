@@ -15,15 +15,15 @@
     </div>
     <div class="row">
         <h4><?= __('Description') ?></h4>
-        <?= $this->Text->autoParagraph($listing->description); ?>
+        <?= $this->Listing->html($listing->description); ?>
     </div>
     <div class="row">
         <h4><?= __('TermsAndConditions') ?></h4>
-        <?= $this->Text->autoParagraph($listing->termsAndConditions); ?>
+        <?= $this->Listing->html($listing->termsAndConditions); ?>
     </div>
     <div class="row">
         <h4><?= __('RefundPolicy') ?></h4>
-        <?= $this->Text->autoParagraph($listing->refundPolicy); ?>
+        <?= $this->Listing->html($listing->refundPolicy); ?>
     </div>
     <div class="row">
         <h4><?= __('Moderators') ?></h4>
