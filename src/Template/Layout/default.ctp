@@ -28,14 +28,12 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 ?><!doctype html>
 <html amp lang="en">
 <head>
-    <?= $this->Html->charset() ?>
+	<?= $this->Html->charset() ?>
 	<meta name="viewport" content="width=device-width,minimum-scale=1">
 	<link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
 	<script async src="https://cdn.ampproject.org/v0.js"></script>
 	<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
-    <title>
-	    <?= $cakeTitle ?> :: <?= $this->fetch('title') ?>
-    </title>
+	<title><?= $cakeTitle ?> :: <?= $this->fetch('title') ?></title>
     <?= $this->Html->meta('icon') ?>
     <?php
     $minifier->add(WWW_ROOT.'css/base.css');
@@ -60,23 +58,24 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 	<link rel="canonical" href="<?php echo Router::url(null, true); ?>">
 </head>
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-	<span class="home">
-		<?=$this->Html->link( __( 'Home' ),['controller'=>'Pages','action'=>'display','home']); ?>
-	</span>
-	<span class="search">
+    <nav class="top-bar expanded" data-topbar role="navigation"
+	><span class="home"><?=$this->Html->link( __( 'Home' ),['controller'=>'Pages','action'=>'display','home']); ?></span
+	><span class="links <?=($this->request->getParam('controller') == 'Listings'?'now':'') ?>"><?=$this->Html->link( __( 'Products' ), [ 'controller' => 'Listings', 'action'     => 'index' ]); ?></span
+	><span class="links <?=($this->request->getParam('controller') == 'Vendors'?'now':'') ?>"><?=$this->Html->link( __( 'Vendors' ), [ 'controller' => 'Vendors', 'action'     => 'index' ]); ?></span
+	><span class="search"
 		<?php if($this->request->getParam('controller') == 'Vendors'){ ?>
-			<form action="<?=$this->Url->build([ 'controller' => 'Vendors', 'action' => 'index' ])?>" method="get" target="_top">
+			><form action="<?=$this->Url->build([ 'controller' => 'Vendors', 'action' => 'index' ])?>" method="get" target="_top"
 		<?php } else { ?>
-			<form action="<?=$this->Url->build([ 'controller' => 'Listings', 'action' => 'index' ])?>" method="get" target="_top">
+			><form action="<?=$this->Url->build([ 'controller' => 'Listings', 'action' => 'index' ])?>" method="get" target="_top"
 		<?php } ?>
-			<input type="text" id="s" name="s" placeholder="<?=($this->request->getParam('controller') == 'Vendors'?__('Search Vendors'):__('Search Products')); ?>" value="<?=$this->request->getQuery( 's' )?>">
-			<button type="submit"><?=__('Go'); ?></button>
-		</form>
-        </span>
-	    <span class="links <?=($this->request->getParam('controller') == 'Listings'?'now':'') ?>"><?=$this->Html->link( __( 'Products' ), [ 'controller' => 'Listings', 'action'     => 'index' ]); ?></span>
-	    <span class="links <?=($this->request->getParam('controller') == 'Vendors'?'now':'') ?>"><?=$this->Html->link( __( 'Vendors' ), [ 'controller' => 'Vendors', 'action'     => 'index' ]); ?></span>
-    </nav>
+			><table><tr><td class="text"
+			><input type="text" id="s" name="s" placeholder="<?=($this->request->getParam('controller') == 'Vendors'?__('Search Vendors'):__('Search Products')); ?>" value="<?=$this->request->getQuery( 's' )?>"
+i			></td><td
+			><button type="submit"><?=__('Search'); ?></button
+			></tr></table
+		></form
+        ></span
+    ></nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
         <?= $this->fetch('content') ?>

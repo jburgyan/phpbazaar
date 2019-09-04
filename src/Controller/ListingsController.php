@@ -64,7 +64,7 @@ class ListingsController extends AppController {
 				'Ratings' => function ( $q ) {
 					return $q
 						->order( [ 'updatedAt' => 'DESC' ] )
-						->limit( 10 );
+						->limit( 60 );
 				}
 			]
 		] );
