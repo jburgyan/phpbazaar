@@ -9,7 +9,6 @@ use Cake\View\Helper;
 use Cake\Utility\Inflector;
 use Cake\View\Helper\TextHelper;
 use Cake\View\View;
-use DOMDocument;
 
 /**
  * Class ListingHelper
@@ -21,12 +20,15 @@ class ListingHelper extends Helper\HtmlHelper {
 
 	public function __construct( View $View, array $config = [] ) {
 		parent::__construct( $View, $config );
-		$this->Text = new TextHelper($View, $config);
+		$this->Text = new TextHelper( $View, $config );
 	}
 
-	public function html($html) {
-		$html = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $html);
-		return $this->Text->autoParagraph($html);
+	public function html( $html ) {
+		$html = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $html );
+		//$html = preg_replace('/(<img[^>]+>(?:<\/img>)?)/i', '$1</amp-img>', $html);
+		//$html = str_replace('<img', '<amp-img layout="fixed" ', $html);
+
+		return $this->Text->autoParagraph( $html );
 	}
 
 	/**
@@ -75,15 +77,16 @@ class ListingHelper extends Helper\HtmlHelper {
 
 	/**
 	 * @param array | null $elements
-	 * @param bool  $print
+	 * @param bool         $print
 	 *
 	 * @return string|void
 	 */
 	public function arrtolist( $elements, $print = true ) {
 		$list = '';
-		if(empty($elements)) {
-			if($print) {
+		if ( empty( $elements ) ) {
+			if ( $print ) {
 				echo $list;
+
 				return;
 			} else {
 				return $list;
@@ -143,12 +146,43 @@ class ListingHelper extends Helper\HtmlHelper {
 				}
 			}
 			$images = $filtered_images;
-			unset($filtered_images);
-			if(count($images) > 1) {
+			unset( $filtered_images );
+			if ( $size == 'large' && count( $images ) > 1 ) {
 				?>
-				<amp-carousel width="500" height="300" layout="responsive" type="slides" loop
+				<amp-carousel height="480" layout="fixed-height" type="slides" loop autoplay delay="5000" media="(min-width: 481px)">
+					<?php
+					foreach ( $images as $image ) {
+						if ( ! empty( $image[ $size ] ) ) {
+							$filename = $image[ $size ] . '_' . $size;
+							$obdir    = $path = WWW_ROOT . 'img' . DS . 'ob';
+							if ( ! is_dir( $obdir ) ) {
+								mkdir( $obdir );
+							}
+							$path = $obdir . DS . $filename;
+							if ( ! is_file( $path ) ) {
+								$imagedata = @file_get_contents( "http://localhost:4002/ipfs/" . $image[ $size ] . "?usecache=false" );
+								if ( ! empty( $imagedata ) ) {
+									file_put_contents( $path, $imagedata );
+								}
+							}
+							if ( is_file( $path ) ) {
+								?>
+								<amp-img src="<?php echo $this->Url->image( 'ob/' . $filename, $options ); ?>" height="480" layout="fixed-height" alt=""></amp-img>
+								<?php
+							}
+						}
+					}
+					?>
+				</amp-carousel>
+				<?php
+			}
+
+
+			if ( count( $images ) > 1 ) {
+				?>
+				<amp-carousel height="480" width="480" layout="responsive" type="slides" loop
 				autoplay
-				delay="5000">
+				delay="5000"<?php if ( $size == 'large' ) { ?>media="(max-width: 480px)"<?php } ?>>
 				<?php
 			}
 			foreach ( $images as $image ) {
@@ -166,19 +200,29 @@ class ListingHelper extends Helper\HtmlHelper {
 						}
 					}
 					if ( is_file( $path ) ) {
-						$imageinfo = getimagesize($path);
+						$imageinfo = getimagesize( $path );
+						if($size == 'large' && count( $images ) < 2) {
+							?>
+							<div class="image-max-height" style="max-width:<?php echo (480/$imageinfo[1]*$imageinfo[0]); ?>px">
+							<?php
+						}
 						?>
-						<amp-img src="<?php echo $this->Url->image('ob/' . $filename, $options); ?>" width="<?php echo $imageinfo[0]; ?>" height="<?php echo $imageinfo[1]; ?>" layout="responsive" alt=""></amp-img>
+						<amp-img src="<?php echo $this->Url->image( 'ob/' . $filename, $options ); ?>" width="<?= $imageinfo[0] ?>" height="<?= $imageinfo[1] ?>" layout="responsive" alt=""></amp-img>
 						<?php
-						//echo $this->image( 'ob/' . $filename, $options );
+						if($size == 'large' && count( $images ) < 2) {
+							?>
+							</div>
+							<?php
+						}
 					}
 				}
 			}
-			if(count($images) > 1) {
+			if ( count( $images ) > 1 ) {
 				?>
 				</amp-carousel>
 				<?php
 			}
+
 		}
 	}
 

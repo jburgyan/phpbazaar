@@ -79,7 +79,7 @@ nav input:-ms-input-placeholder { /* Internet Explorer 10-11 */
 h4 {
   color: #888;
   padding-bottom:0.5rem;
-  margin-top:1rem; 
+  margin-top:1rem;
   padding:0;
   border-top:solid 1px #EEE;
   font-size:0.8rem;
@@ -93,7 +93,7 @@ img {
   width:auto;
   height:auto;
 }
-  
+
 img.vendor-header {
   width:100%;
   height: auto;
@@ -102,6 +102,12 @@ img.vendor-header {
 div.product-image img {
   height: 240px;
   width: auto;
+}
+.image-max-height {
+  max-height: 480px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* JOZSEF */
