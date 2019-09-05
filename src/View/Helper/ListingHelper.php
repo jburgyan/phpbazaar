@@ -147,6 +147,11 @@ class ListingHelper extends Helper\HtmlHelper {
 			}
 			$images = $filtered_images;
 			unset( $filtered_images );
+			if($size == 'large') {
+				?>
+				<amp-image-lightbox id="lightbox1" layout="nodisplay"></amp-image-lightbox>
+				<?php
+			}
 			if ( $size == 'large' && count( $images ) > 1 ) {
 				?>
 				<amp-carousel height="480" layout="fixed-height" type="slides" loop autoplay delay="5000" media="(min-width: 481px)">
@@ -167,7 +172,7 @@ class ListingHelper extends Helper\HtmlHelper {
 							}
 							if ( is_file( $path ) ) {
 								?>
-								<amp-img src="<?php echo $this->Url->image( 'ob/' . $filename, $options ); ?>" height="480" layout="fixed-height" alt=""></amp-img>
+								<amp-img on="tap:lightbox1" role="button" tabindex="0" src="<?php echo $this->Url->image( 'ob/' . $filename, $options ); ?>" height="480" layout="fixed-height" alt=""></amp-img>
 								<?php
 							}
 						}
@@ -176,8 +181,6 @@ class ListingHelper extends Helper\HtmlHelper {
 				</amp-carousel>
 				<?php
 			}
-
-
 			if ( count( $images ) > 1 ) {
 				?>
 				<amp-carousel height="480" width="480" layout="responsive" type="slides" loop
@@ -207,7 +210,7 @@ class ListingHelper extends Helper\HtmlHelper {
 							<?php
 						}
 						?>
-						<amp-img src="<?php echo $this->Url->image( 'ob/' . $filename, $options ); ?>" width="<?= $imageinfo[0] ?>" height="<?= $imageinfo[1] ?>" layout="responsive" alt=""></amp-img>
+						<amp-img<?php if($size == 'large') { ?> on="tap:lightbox1" role="button" tabindex="0"<?php } ?> src="<?php echo $this->Url->image( 'ob/' . $filename, $options ); ?>" width="<?= $imageinfo[0] ?>" height="<?= $imageinfo[1] ?>" layout="responsive" alt=""></amp-img>
 						<?php
 						if($size == 'large' && count( $images ) < 2) {
 							?>
