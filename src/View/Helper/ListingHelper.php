@@ -181,6 +181,9 @@ class ListingHelper extends Helper\HtmlHelper {
 		if ( ! empty( $images ) ) {
 			$filtered_images = [];
 			foreach ( $images as $image ) {
+				if(!empty($image) && empty($image[ $size ])) {
+					$image[ $size ] = array_shift($image);
+				}
 				if ( ! empty( $image[ $size ] ) ) {
 					$filtered_images[] = $image;
 				}
