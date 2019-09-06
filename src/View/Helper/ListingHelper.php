@@ -5,6 +5,7 @@
 
 namespace App\View\Helper;
 
+use Cake\Routing\Router;
 use Cake\View\Helper;
 use Cake\Utility\Inflector;
 use Cake\View\Helper\TextHelper;
@@ -75,6 +76,26 @@ class ListingHelper extends Helper\HtmlHelper {
 		}
 	}
 
+	public function arrtovendors( $vendors ) {
+		$vendors = trim( $vendors, "{}" );
+		$vendors = explode( ",", $vendors );
+		if ( ! empty( $vendors ) ) {
+			$links = [];
+			foreach ( $vendors as $vendor ) {
+				$vendor = trim( $vendor, '"' );
+				$links[]  = $this->link(
+					html_entity_decode( $vendor),
+					[
+						'controller' => 'Vendors',
+						'action'     => 'view',
+						$vendor
+					]
+				);
+			}
+			echo implode( ', ', $links );
+		}
+	}
+
 	/**
 	 * @param array | null $elements
 	 * @param bool         $print
@@ -126,12 +147,31 @@ class ListingHelper extends Helper\HtmlHelper {
 		return '';
 	}
 
+	private function getImageUrl( $hash, $size ) {
+		$filename = $hash . '_' . $size;
+		$subdir   = 'img' . DS . 'ob' . DS . substr( $hash, - 2 );
+		$obdir    = WWW_ROOT . $subdir;
+		if ( ! is_dir( $obdir ) ) {
+			mkdir( $obdir );
+		}
+		$path = $obdir . DS . $filename;
+		if ( is_file( $path ) ) {
+			return Router::url( DS.$subdir . DS . $filename, true );
+		} else {
+			return Router::url( [
+				'controller' => 'Images',
+				'action'     => 'index',
+				$hash,
+				$size
+			], true);
+		}
+	}
+
 	/**
 	 * @param array|string $images
 	 * @param string       $size
-	 * @param array        $options
 	 */
-	public function printimages( $images, $size = 'large', $options = array() ) {
+	public function printimages( $images, $size = 'large' ) {
 		if ( ! is_array( $images ) ) {
 			$images = $this->pg_array_parse( $images );
 		}
@@ -147,7 +187,7 @@ class ListingHelper extends Helper\HtmlHelper {
 			}
 			$images = $filtered_images;
 			unset( $filtered_images );
-			if($size == 'large') {
+			if ( $size == 'large' ) {
 				?>
 				<amp-image-lightbox id="lightbox1" layout="nodisplay"></amp-image-lightbox>
 				<?php
@@ -158,23 +198,9 @@ class ListingHelper extends Helper\HtmlHelper {
 					<?php
 					foreach ( $images as $image ) {
 						if ( ! empty( $image[ $size ] ) ) {
-							$filename = $image[ $size ] . '_' . $size;
-							$obdir    = $path = WWW_ROOT . 'img' . DS . 'ob';
-							if ( ! is_dir( $obdir ) ) {
-								mkdir( $obdir );
-							}
-							$path = $obdir . DS . $filename;
-							if ( ! is_file( $path ) ) {
-								$imagedata = @file_get_contents( "http://localhost:4002/ipfs/" . $image[ $size ] . "?usecache=false" );
-								if ( ! empty( $imagedata ) ) {
-									file_put_contents( $path, $imagedata );
-								}
-							}
-							if ( is_file( $path ) ) {
-								?>
-								<amp-img on="tap:lightbox1" role="button" tabindex="0" src="<?php echo $this->Url->image( 'ob/' . $filename, $options ); ?>" height="480" layout="fixed-height" alt=""></amp-img>
-								<?php
-							}
+							?>
+							<amp-img on="tap:lightbox1" role="button" tabindex="0" src="<?php echo $this->getImageUrl( $image[ $size ], $size ); ?>" height="480" layout="fixed-height" alt=""></amp-img>
+							<?php
 						}
 					}
 					?>
@@ -185,38 +211,45 @@ class ListingHelper extends Helper\HtmlHelper {
 				?>
 				<amp-carousel height="480" width="480" layout="responsive" type="slides" loop
 				autoplay
-				delay="5000"<?php if ( $size == 'large' ) { ?>media="(max-width: 480px)"<?php } ?>>
+				delay="5000"<?php if ( $size == 'large' ) { ?> media="(max-width: 480px)"<?php } ?>>
 				<?php
 			}
 			foreach ( $images as $image ) {
 				if ( ! empty( $image[ $size ] ) ) {
-					$filename = $image[ $size ] . '_' . $size;
-					$obdir    = $path = WWW_ROOT . 'img' . DS . 'ob';
-					if ( ! is_dir( $obdir ) ) {
-						mkdir( $obdir );
-					}
-					$path = $obdir . DS . $filename;
-					if ( ! is_file( $path ) ) {
-						$imagedata = @file_get_contents( "http://localhost:4002/ipfs/" . $image[ $size ] . "?usecache=false" );
-						if ( ! empty( $imagedata ) ) {
-							file_put_contents( $path, $imagedata );
+					if ( $size == 'large' ) {
+						$filename = $image[ $size ] . '_' . $size;
+						$subdir   = 'img' . DS . 'ob' . DS . substr( $image[ $size ], - 2 );
+						$obdir    = WWW_ROOT . $subdir;
+						if ( ! is_dir( $obdir ) ) {
+							mkdir( $obdir );
 						}
-					}
-					if ( is_file( $path ) ) {
+						$path = $obdir . DS . $filename;
+						if ( ! is_file( $path ) ) {
+							$imagedata = @file_get_contents(
+								"http://localhost:4002/ipfs/" . $image[ $size ] . "?usecache=false"
+							);
+							if ( ! empty( $imagedata ) ) {
+								file_put_contents( $path, $imagedata );
+							}
+						}
 						$imageinfo = getimagesize( $path );
-						if($size == 'large' && count( $images ) < 2) {
+						if(count( $images ) < 2) {
 							?>
-							<div class="image-max-height" style="max-width:<?php echo (480/$imageinfo[1]*$imageinfo[0]); ?>px">
+							<div class="image-max-height" style="max-width:<?php echo( 480 / $imageinfo[1] * $imageinfo[0] ); ?>px">
 							<?php
 						}
 						?>
-						<amp-img<?php if($size == 'large') { ?> on="tap:lightbox1" role="button" tabindex="0"<?php } ?> src="<?php echo $this->Url->image( 'ob/' . $filename, $options ); ?>" width="<?= $imageinfo[0] ?>" height="<?= $imageinfo[1] ?>" layout="responsive" alt=""></amp-img>
+						<amp-img<?php if ( $size == 'large' ) { ?> on="tap:lightbox1" role="button" tabindex="0"<?php } ?> src="<?php echo $this->getImageUrl( $image[ $size ], $size ); ?>" width="<?= $imageinfo[0] ?>" height="<?= $imageinfo[1] ?>" layout="responsive" alt=""></amp-img>
 						<?php
-						if($size == 'large' && count( $images ) < 2) {
+						if(count( $images ) < 2) {
 							?>
 							</div>
 							<?php
 						}
+					} else {
+						?>
+						<amp-img src="<?php echo $this->getImageUrl( $image[ $size ], $size ); ?>" layout="fill" alt=""></amp-img>
+						<?php
 					}
 				}
 			}
@@ -253,9 +286,10 @@ class ListingHelper extends Helper\HtmlHelper {
 		return $values;
 	}
 
-	public function buylink($slugPeerId) {
-		$oburl = explode('-', $slugPeerId, 2);
-		$oburl = 'ob://'.$oburl[0].'/store/'.$oburl[1];
-		return $this->link($slugPeerId, $oburl);
+	public function buylink( $slugPeerId ) {
+		$oburl = explode( '-', $slugPeerId, 2 );
+		$oburl = 'ob://' . $oburl[0] . '/store/' . $oburl[1];
+
+		return $this->link( $slugPeerId, $oburl );
 	}
 }
