@@ -43,3 +43,10 @@ nbproject/*
 
 # SQL dump
 sql/rawflood.sql
+
+# Sitemaps
+webroot/sitemap-cats.txt
+webroot/sitemap-products.txt
+webroot/sitemap-tags.txt
+webroot/sitemap-vendors.txt
+webroot/sitemap.txt
