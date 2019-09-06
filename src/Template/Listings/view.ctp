@@ -12,6 +12,7 @@
     <div class="row">
         <h4><?= __('Price') ?></h4>
         <?php $this->Listing->price($listing->price, $listing->contractType); ?>
+	    <?= $this->Html->link(__('BUY'), "/pages/buy",['class'=>'buy']) ?>
     </div>
     <div class="row">
         <h4><?= __('Description') ?></h4>
