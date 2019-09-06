@@ -76,4 +76,8 @@
         <h4><?= __('Updated At') ?></h4>
         <?= h($listing->updatedAt) ?>
     </div>
+	<div class="row">
+		<h4><?= __('Buy this product') ?></h4>
+		<?= $this->Listing->buylink($listing->slugPeerId); ?>
+	</div>
 </div>

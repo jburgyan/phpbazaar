@@ -252,4 +252,10 @@ class ListingHelper extends Helper\HtmlHelper {
 
 		return $values;
 	}
+
+	public function buylink($slugPeerId) {
+		$oburl = explode('-', $slugPeerId, 2);
+		$oburl = 'ob://'.$oburl[0].'/store/'.$oburl[1];
+		return $this->link($slugPeerId, $oburl);
+	}
 }
