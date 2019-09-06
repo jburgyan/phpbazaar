@@ -67,21 +67,23 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 </head>
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
-	<span class="home"><?=$this->Html->link( __( 'Home' ),['controller'=>'Pages','action'=>'display','home']); ?></span>
-	<span class="links <?=($this->request->getParam('controller') == 'Listings'?'now':'') ?>"><?=$this->Html->link( __( 'Products' ), [ 'controller' => 'Listings', 'action'     => 'index' ]); ?></span>
-	<span class="links <?=($this->request->getParam('controller') == 'Vendors'?'now':'') ?>"><?=$this->Html->link( __( 'Vendors' ), [ 'controller' => 'Vendors', 'action'     => 'index' ]); ?></span>
-	<span class="search">
+    <table class="nav"><tr>
+	<td class="home"><?=$this->Html->link( __( 'Home' ),['controller'=>'Pages','action'=>'display','home']); ?></td>
+	<td class="search">
 		<?php if($this->request->getParam('controller') == 'Vendors'){ ?>
 			<form action="<?=$this->Url->build([ 'controller' => 'Vendors', 'action' => 'index' ])?>" method="get" target="_top">
 		<?php } else { ?>
 			<form action="<?=$this->Url->build([ 'controller' => 'Listings', 'action' => 'index' ])?>" method="get" target="_top">
 		<?php } ?>
-			<table><tr><td class="text">
+			<table class="search"><tr><td class="text">
 			<input type="text" id="s" name="s" placeholder="<?=($this->request->getParam('controller') == 'Vendors'?__('Search Vendors'):__('Search Products')); ?>" value="<?=$this->request->getQuery( 's' )?>"></td><td>
-			<button type="submit"><?=__('Search'); ?></button>
+			<button type="submit"><?=__('Find'); ?></button>
 			</tr></table>
 		</form>
-        </span>
+        </td>
+	<td class="links <?=($this->request->getParam('controller') == 'Listings'?'now':'') ?>"><?=$this->Html->link( __( 'Products' ), [ 'controller' => 'Listings', 'action'     => 'index' ]); ?></td>
+	<td class="links <?=($this->request->getParam('controller') == 'Vendors'?'now':'') ?>"><?=$this->Html->link( __( 'Vendors' ), [ 'controller' => 'Vendors', 'action'     => 'index' ]); ?></td>
+    </tr></table>
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">

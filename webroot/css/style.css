@@ -15,32 +15,28 @@ nav {
   background-color:#DDD;
   padding-left:0.5rem;
   padding-right:0.5rem;
-}
-nav span {
   padding-top:1rem;
-  position:relative;
-  display:inline-block;
+}
+nav td {
   white-space:nowrap;
 }
-nav span.home {
-  float:left;
+nav td.home {
   margin-right:1rem;
 }
-nav span.links {
-  float:right;
+nav td.links {
   margin-left:1rem;
 }
-nav span.now {
+nav td.now {
   border-bottom: dashed 1px red;
 }
-nav span.search {
-  max-width:400px;
+nav td.search {
+  width:100%;
+  text-align:center
+}
+nav td.search table {
   width:100%;
 }
-nav span.search table {
-  width:100%;
-}
-nav span.search table td.text {
+nav td.search table td.text {
   width:100%;
 }
 nav input {
