@@ -28,7 +28,7 @@
     </div>
     <div class="row">
         <h4><?= __('Moderators') ?></h4>
-        <?php $this->Listing->arrtolinks($listing->moderators); ?>
+        <?php $this->Listing->arrtovendors($listing->moderators); ?>
     </div>
     <div class="row">
         <h4><?= __('Tags') ?></h4>
@@ -43,27 +43,26 @@
         <?= $listing->has('vendor') ? $this->Html->link($listing->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $listing->vendor->peerId]) : '' ?>
     </div>
     <div class="row">
-        <h4><?= __('Ratings') ?></h4>
+        <h4><?= __('Ratings[0-5]: C=Customer Service S=Delivery Speed D=Description O=Overall ') ?></h4>
         <?php if (!empty($listing->ratings)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table class="rating" cellpadding="0" cellspacing="0">
             <tr>
-                <th scope="col"><?= __('Buyer') ?></th>
-                <th scope="col"><?= __('Customer Service Score') ?></th>
-                <th scope="col"><?= __('Delivery SpeedS core') ?></th>
-                <th scope="col"><?= __('Description Score') ?></th>
-                <th scope="col"><?= __('Overall Score') ?></th>
-                <th scope="col"><?= __('Review') ?></th>
                 <th scope="col"><?= __('Date') ?></th>
+                <th scope="col"><?= __('C') ?></th>
+                <th scope="col"><?= __('D') ?></th>
+                <th scope="col"><?= __('D') ?></th>
+                <th scope="col"><?= __('O') ?></th>
+                <th scope="col"><?= __('Review') ?></th>
             </tr>
             <?php foreach ($listing->ratings as $ratings): ?>
             <tr>
-                <td><?= $this->Html->link($ratings->buyerPeerID, ['controller' => 'Vendors', 'action' => 'view', $ratings->buyerPeerID]); ?></td>
-                <td><?= h($ratings->customerServiceScore) ?></td>
-                <td><?= h($ratings->deliverySpeedScore) ?></td>
-                <td><?= h($ratings->descriptionScore) ?></td>
-                <td><?= h($ratings->overallScore) ?></td>
-                <td><?= $ratings->review ?></td>
-                <td><?= h($ratings->updatedAt) ?></td>
+                <td class="nowrap" ><?= h($ratings->updatedAt) ?></td>
+                <td class="nowrap" ><?= h($ratings->customerServiceScore) ?></td>
+                <td class="nowrap" ><?= h($ratings->deliverySpeedScore) ?></td>
+                <td class="nowrap" ><?= h($ratings->descriptionScore) ?></td>
+                <td class="nowrap" ><?= h($ratings->overallScore) ?></td>
+                <td><?= $ratings->review ?>
+                <?= $this->Html->link($ratings->buyerPeerID, ['controller' => 'Vendors', 'action' => 'view', $ratings->buyerPeerID]); ?></td>
             </tr>
             <?php endforeach; ?>
         </table>
@@ -78,7 +77,7 @@
         <?= h($listing->updatedAt) ?>
     </div>
 	<div class="row">
-		<h4><?= __('Buy this product') ?></h4>
+		<h4><?= __('SlugPeerID (OpenBazaar link)') ?></h4>
 		<?= $this->Listing->buylink($listing->slugPeerId); ?>
 	</div>
 </div>

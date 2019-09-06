@@ -199,6 +199,14 @@ a.buy {
   position: relative;
   color:red
 }
+table.rating th, table.rating td {
+  text-align:left;
+  padding-right:0.5rem;
+  vertical-align:top;
+}
+table.rating th, table.rating td.nowrap {
+  white-space:nowrap;
+}
 span.listing div.image {
   margin-right: 1rem;
   position:relative;
