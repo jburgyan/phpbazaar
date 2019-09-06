@@ -22,10 +22,10 @@ class ListingsController extends AppController {
 	 */
 	public function index() {
 		$this->paginate = [
-			'contain' => [ 'Vendors' ],
+			//'contain' => [ 'Vendors' ],
 			'conditions' => [],
 			'order' => [
-				'Listings.fee' => 'DESC'
+				'Listings.updatedAt' => 'DESC'
 			],
 			'limit' => 60
 		];
@@ -43,6 +43,7 @@ class ListingsController extends AppController {
 		if($search) {
 			$this->paginate['conditions'][] =
 				"\"Listings\".\"_search\" @@ plainto_tsquery('english', ".$connection->quote($search).")";
+			$this->paginate['order'] = ['Listings.fee' => 'DESC'];
 		}
 
 		$listings       = $this->paginate( $this->Listings );
