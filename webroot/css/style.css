@@ -21,10 +21,10 @@ nav td {
   white-space:nowrap;
 }
 nav td.home {
-  margin-right:1rem;
+  padding-right:1rem;
 }
 nav td.links {
-  margin-left:1rem;
+  padding-left:1rem;
 }
 nav td.now {
   border-bottom: dashed 1px red;
