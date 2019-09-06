@@ -1,0 +1,4 @@
+Sitemap: https://bazaar.blockstamp.market/sitemap-vendors.txt
+Sitemap: https://bazaar.blockstamp.market/sitemap-products.txt
+Sitemap: https://bazaar.blockstamp.market/sitemap-tags.txt
+Sitemap: https://bazaar.blockstamp.market/sitemap-cats.txt

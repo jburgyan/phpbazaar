@@ -1,24 +1,19 @@
 <?php
-$this->assign('title', 'Home');
+$this->assign('title', 'Buy');
 ?>
 <div class="row">
 	<div class="columns large-12">
 		<div class="aboutPageContainer">
-			<h1> BlockStamp OpenBazaar Explorer</h1>
+			<h1> How do I buy something on BlockStamp OpenBazaar Explorer ?  </h1>
 			<p>
-				The BlockStamp OpenBazaar Explorer is a viewer of products listed on the distributed OpenBazzaar marketplace.
+				You can not buy products through this www Explorer. This is just a viewer of products listed on the distributed OpenBazzaar marketplace. You have to download the OpenBazaar desktop application to buy goods on OpenBazaar.
+				<a class="clickableLink" href="https://openbazaar.zendesk.com/hc/en-us/articles/202587109-How-do-I-install-and-use-OpenBazaar-" target="_blank"> Check this guide out to get setup. </a>
 			</p>
 			<h3> What is OpenBazaar? </h3>
 			<p>
 				OpenBazaar is a new peer-to-peer decentralized e-commerce marketplace. It is the first marketplace of its kind. It is controlled by no one and people can transact in any cryptocurrency and with anyone. OpenBazaar has no fees and no restrictions.
 				There isn’t an organization, company, or individual managing OpenBazaar so there’s nobody to pay. The system works by allowing individuals to connect to each other to buy and sell goods without a middleman. The terms and conditions of each individual listing is up to the vendor, they will vary from one person to the next.
 				<a class="clickableLink" href="https://openbazaar.zendesk.com/hc/en-us/articles/208020193-What-is-OpenBazaar-" target="_blank"> Learn more here.</a>
-			</p>
-			<a id="buy"></a>
-			<h3> How do I buy something through OpenBazaar?  </h3>
-			<p>
-				Right now, you will have to download the OpenBazaar desktop application to buy goods on OpenBazaar.
-				<a class="clickableLink" href="https://openbazaar.zendesk.com/hc/en-us/articles/202587109-How-do-I-install-and-use-OpenBazaar-" target="_blank"> Check this guide out to get setup. </a>
 			</p>
 			<h3> Can I use this explorer in the OpenBazaar application? </h3>
 			<p>

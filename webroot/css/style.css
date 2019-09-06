@@ -193,6 +193,12 @@ span.listing {
   width:330px;
   overflow-y:hidden;
 }
+a.buy {
+  display:block;
+  float: right;
+  position: relative;
+  color:red
+}
 span.listing div.image {
   margin-right: 1rem;
   position:relative;
