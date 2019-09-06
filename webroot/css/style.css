@@ -218,6 +218,9 @@ span.listing div.image, span.vendor div.image {
   width: 120px;
   height: 120px;
 }
+span.listing div.image amp-img, span.vendor div.image amp-img {
+  background-color: white;
+}
 span.listing div.image amp-img img, span.vendor div.image amp-img img {
   object-fit: contain;
 }
