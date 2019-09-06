@@ -26,22 +26,15 @@ nav td.home {
 nav td.links {
   padding-left:1rem;
 }
-nav td.now {
+nav span.now {
   border-bottom: dashed 1px red;
 }
 nav td.search {
   width:100%;
-  text-align:center
-}
-nav td.search table {
-  width:100%;
-}
-nav td.search table td.text {
-  width:100%;
 }
 nav input {
-  padding:0;
   border:0;
+  padding:0;
   border-bottom: dashed 1px red;
   background-color:#DDD;
   width:100%;

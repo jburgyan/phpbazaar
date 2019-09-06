@@ -67,23 +67,19 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 </head>
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
+    <?php if($this->request->getParam('controller') == 'Vendors'){ ?>
+	<form action="<?=$this->Url->build([ 'controller' => 'Vendors', 'action' => 'index' ])?>" method="get" target="_top">
+    <?php } else { ?>
+	<form action="<?=$this->Url->build([ 'controller' => 'Listings', 'action' => 'index' ])?>" method="get" target="_top">
+    <?php } ?>
     <table class="nav"><tr>
 	<td class="home"><?=$this->Html->link( __( 'Home' ),['controller'=>'Pages','action'=>'display','home']); ?></td>
-	<td class="search">
-		<?php if($this->request->getParam('controller') == 'Vendors'){ ?>
-			<form action="<?=$this->Url->build([ 'controller' => 'Vendors', 'action' => 'index' ])?>" method="get" target="_top">
-		<?php } else { ?>
-			<form action="<?=$this->Url->build([ 'controller' => 'Listings', 'action' => 'index' ])?>" method="get" target="_top">
-		<?php } ?>
-			<table class="search"><tr><td class="text">
-			<input type="text" id="s" name="s" placeholder="<?=($this->request->getParam('controller') == 'Vendors'?__('Search Vendors'):__('Search Products')); ?>" value="<?=$this->request->getQuery( 's' )?>"></td><td>
-			<button type="submit"><?=__('Find'); ?></button>
-			</tr></table>
-		</form>
-        </td>
-	<td class="links <?=($this->request->getParam('controller') == 'Listings'?'now':'') ?>"><?=$this->Html->link( __( 'Products' ), [ 'controller' => 'Listings', 'action'     => 'index' ]); ?></td>
-	<td class="links <?=($this->request->getParam('controller') == 'Vendors'?'now':'') ?>"><?=$this->Html->link( __( 'Vendors' ), [ 'controller' => 'Vendors', 'action'     => 'index' ]); ?></td>
+	<td class="search"><input type="text" id="s" name="s" placeholder="<?=($this->request->getParam('controller') == 'Vendors'?__('Search Vendors'):__('Search Products')); ?>" value="<?=$this->request->getQuery( 's' )?>"></td>
+	<td class="button"><button type="submit"><?=__('Find'); ?></button></td>
+	<td class="links"><span class="<?=($this->request->getParam('controller') == 'Listings'?'now':'') ?>"><?=$this->Html->link( __( 'Products' ), [ 'controller' => 'Listings', 'action' => 'index' ]); ?></span></td>
+	<td class="links"><span class="<?=($this->request->getParam('controller') == 'Vendors'?'now':'') ?>"><?=$this->Html->link( __( 'Vendors' ), [ 'controller' => 'Vendors', 'action' => 'index' ]); ?></span></td>
     </tr></table>
+    </form>
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
