@@ -22,7 +22,7 @@ class ListingsController extends AppController {
 	 */
 	public function index() {
 		$this->paginate = [
-			//'contain' => [ 'Vendors' ],
+			'contain' => [ 'Vendors' ],
 			'conditions' => [],
 			'order' => [
 				'Listings.updatedAt' => 'DESC'

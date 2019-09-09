@@ -61,7 +61,8 @@ class VendorsController extends AppController {
 			'contain' => [],
 			'conditions' => [
 				'vendorPeerId' => $id
-			]
+			],
+			'limit' => 60
 		];
 		$category = $this->request->getQuery('c');
 		$tag = $this->request->getQuery('t');
