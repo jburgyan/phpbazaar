@@ -100,5 +100,6 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
     </div>
     <footer>
     </footer>
+    <amp-pixel src="https://www.facebook.com/tr?id=751147255305734&ev=PageView&noscript=1" layout="nodisplay"></amp-pixel>
 </body>
 </html>
