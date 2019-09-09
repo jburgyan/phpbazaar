@@ -33,7 +33,21 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 	<link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
 	<script async src="https://cdn.ampproject.org/v0.js"></script>
 	<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
-	<?php
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <amp-analytics type="gtag" data-credentials="include">
+        <script type="application/json">
+            {
+                "vars" : {
+                    "gtag_id": "UA-145701962-1",
+                    "config" : {
+                        "UA-145701962-1": { "groups": "default" }
+                    }
+                }
+            }
+        </script>
+    </amp-analytics>
+
+    <?php
 	if(in_array($this->request->getParam('controller'), array('Listings', 'Vendors'))) {
 		?>
 		<script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
