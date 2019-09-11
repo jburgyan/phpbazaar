@@ -10,7 +10,7 @@ a {
 /* TOP BAR */
 
 nav {
-    border: solid 2px blue;
+    border: none;
     text-align: center;
     background-color: #ff8553;
     padding: 0.3rem 0.5rem;
