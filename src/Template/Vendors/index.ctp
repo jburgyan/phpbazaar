@@ -10,7 +10,7 @@
 <?php foreach ($vendors as $vendor): ?>
 	<span class="vendor">
 		<div class="image">
-			<?php $this->Listing->printimages($vendor->avatarHashes, 'small', array('class' => 'vendor-avatar')); ?>
+			<?php $this->Listing->printimages($vendor->avatarHashes, 'medium', array('class' => 'vendor-avatar')); ?>
 		</div>
 		<div class="title">
 			<?= $this->Html->link($vendor->name, ['controller' => 'Vendors', 'action' => 'view', $vendor->peerId]) ?>

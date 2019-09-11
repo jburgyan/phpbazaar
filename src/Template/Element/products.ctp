@@ -9,7 +9,7 @@
 <?php foreach ($listings as $listing): ?>
 	<span class="listing">
 		<div class="image">
-			<?php $this->Listing->printimages($listing->thumbnail, 'small'); ?>
+			<?php $this->Listing->printimages($listing->thumbnail, 'medium'); ?>
 		</div>
 		<div class="title">
 			<?= $this->Html->link( $listing->title, [ 'controller' => 'Listings', 'action'     => 'view', $listing->slugPeerId ]) ?>

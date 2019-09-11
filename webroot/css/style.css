@@ -1,102 +1,160 @@
 /* BASIC */
 html {
-  font-size:14px;
+    font-size: 14px;
 }
+
 a {
-  text-decoration:none;
+    text-decoration: none;
 }
 
 /* TOP BAR */
 
 nav {
-  padding-bottom:1rem;
-  border-bottom:solid 2px blue;
-  text-align:center;
-  background-color:#DDD;
-  padding-left:0.5rem;
-  padding-right:0.5rem;
-  padding-top:1rem;
+    border: solid 2px blue;
+    text-align: center;
+    background-color: #ff8553;
+    padding: 0.3rem 0.5rem;
 }
-nav td {
-  white-space:nowrap;
+nav .nav > div {
+    float:left;
 }
-nav td.home {
-  padding-right:1rem;
+nav .nav > div.clear {
+    float: none;
+    clear: both;
+    height: auto;
 }
-nav td.links {
-  padding-left:1rem;
+nav .nav > div.home {
+    margin-right: 15px;
+}
+nav .nav > div.search {
+    margin-right: 5px;
+    margin-top: 9px;
+    min-width: 400px;
+}
+nav .nav > div.button {
+    margin-right: 5px;
+    margin-top: 9px;
+}
+nav .nav > div.links {
+    margin-top: 9px;
+    line-height: 29px;
+    margin-right: 20px;
+    float: right;
+}
+nav .nav > div.links span {
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 nav span.now {
-  border-bottom: dashed 1px red;
+    border-bottom: dashed 1px red;
 }
-nav td.search {
-  width:100%;
-}
+
 nav input {
-  border:0;
-  padding:0;
-  border-bottom: dashed 1px red;
-  background-color:#DDD;
-  width:100%;
+    background-color: white;
+    border: 2px solid blue;
+    color: blue;
+    width: calc(100% - 25px);
+    display: block;
+    padding: 6px 0 3px 20px;
 }
+
+nav input::placeholder {
+    color: blue;
+    opacity: 1;
+}
+
 nav button {
-  border:0;
-  color:red;
-  background-color:#DDD;
-  padding-left:0.5rem;
-  padding-right:0;
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+    background-color: blue;
+    padding: 6px 25px 3px;
 }
+
 nav a {
-  color:red;
+    color: white;
+    font-size: 1.2em;
 }
+
 nav input::-webkit-input-placeholder { /* Edge */
-  color: #FFF;
+    color: #FFF;
 }
+
 nav input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: #FFF;
+    color: #FFF;
 }
+
 ::placeholder {
-  color: #FFF;
+    color: #FFF;
+}
+
+@media only screen and (max-width: 972px) {
+    nav .nav > div.search {
+        min-width: 212px;
+    }
+}
+@media only screen and (max-width: 784px) {
+    nav .nav > div, nav .nav > div.links {
+        float: none;
+        width: auto;
+        margin-right: 0;
+        margin-left: 0;
+        min-width: 0;
+    }
+    nav .nav > div.search {
+        float: left;
+        width: calc(100% - 92px);
+        min-width: 0;
+    }
+}
+@media only screen and (max-width: 260px) {
+    nav .nav > div.search {
+        float: none;
+        width: auto;
+        min-width: 0;
+    }
 }
 
 /* CONTAINER */
 
 .container.clearfix {
-	padding: 0.5rem;
+    padding: 0.5rem;
 }
 
 h4 {
-  color: #888;
-  padding-bottom:0.5rem;
-  margin-top:1rem;
-  padding:0;
-  border-top:solid 1px #EEE;
-  font-size:0.8rem;
-  font-weight:normal;
+    color: #888;
+    margin-top: 1rem;
+    padding: 0;
+    border-top: solid 1px #EEE;
+    font-size: 0.8rem;
+    font-weight: normal;
 }
+
 div.product-image {
-  display: block;
+    display: block;
 }
 
 img {
-  width:auto;
-  height:auto;
+    width: auto;
+    height: auto;
 }
 
 img.vendor-header {
-  width:100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 }
 
 div.product-image img {
-  height: 240px;
-  width: auto;
+    height: 240px;
+    width: auto;
 }
+
 .image-max-height {
-  max-height: 480px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+    max-height: 480px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* JOZSEF */
@@ -106,6 +164,7 @@ div.product-image img {
     min-width: 100%;
     margin-bottom: 2rem;
 }
+
 .vendors .vendor-avatar {
     margin-bottom: 1rem;
 }
@@ -113,133 +172,149 @@ div.product-image img {
 /* PAGINATOR */
 
 ul.pagination {
-	padding:0;
+    padding: 0;
 }
+
 ul.pagination li a {
-        color: rgba(0, 0 ,0 , 0.54);
+    color: rgba(0, 0, 0, 0.54);
 }
 
 ul.pagination li.active a {
-        background-color: #DCE47E;
-        color: #FFF;
-        font-weight: bold;
-        cursor: default;
+    background-color: #DCE47E;
+    color: #FFF;
+    font-weight: bold;
+    cursor: default;
 }
+
 ul.pagination .disabled:hover a {
-        background: none;
+    background: none;
 }
 
 .paginator {
-        text-align: center;
+    text-align: center;
 }
 
 .paginator ul.pagination li {
-        float: none;
-        display: inline-block;
-	margin: 0.25rem;
+    float: none;
+    display: inline-block;
+    margin: 0.25rem;
 }
 
 .paginator p {
-        text-align: center;
-        color: rgba(0, 0 ,0 , 0.54);
+    text-align: center;
+    color: rgba(0, 0, 0, 0.54);
 }
 
 .asc:after {
-        content: " \2193";
+    content: " \2193";
 }
+
 .desc:after {
-        content: " \2191";
+    content: " \2191";
 }
 
 /* LESZEK */
 
 span.vendor {
-  margin-top: 1rem;
-  margin-right: 1rem;
-  position:relative;
-  display:inline-block;
-  height:120px;
-  width:330px;
-  overflow-y:hidden;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    position: relative;
+    display: inline-block;
+    height: 120px;
+    width: 330px;
+    overflow-y: hidden;
 }
+
 span.vendor div.image {
-  margin-right: 1rem;
-  position:relative;
-  display:block;
-  float:left;
-  height:120px;
-  width:120px;
-  overflow:hidden;
-  background-color:#F8F8F8;
+    margin-right: 1rem;
+    position: relative;
+    display: block;
+    float: left;
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+    background-color: #F8F8F8;
 }
 
 span.listing {
-  margin-top: 1rem;
-  margin-right: 1rem;
-  position:relative;
-  display:inline-block;
-  height:120px;
-  width:330px;
-  overflow-y:hidden;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    position: relative;
+    display: inline-block;
+    height: 120px;
+    width: 330px;
+    overflow-y: hidden;
 }
+
 a.buy {
-  display:block;
-  float: right;
-  position: relative;
-  color:red
+    display: block;
+    float: right;
+    position: relative;
+    color: red
 }
+
 table.rating th, table.rating td {
-  text-align:left;
-  padding-right:0.5rem;
-  vertical-align:top;
+    text-align: left;
+    padding-right: 0.5rem;
+    vertical-align: top;
 }
+
 table.rating th, table.rating td.nowrap {
-  white-space:nowrap;
+    white-space: nowrap;
 }
+
 span.listing div.image {
-  margin-right: 1rem;
-  position:relative;
-  display:block;
-  float:left;
-  height:120px;
-  width:120px;
-  overflow:hidden;
-  background-color:#F8F8F8;
+    margin-right: 1rem;
+    position: relative;
+    display: block;
+    float: left;
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+    background-color: #F8F8F8;
 }
+
 span.listing div.image, span.vendor div.image {
-  position: relative;
-  width: 120px;
-  height: 120px;
+    position: relative;
+    width: 120px;
+    height: 120px;
 }
+
 span.listing div.image amp-img, span.vendor div.image amp-img {
-  background-color: white;
+    background-color: white;
 }
+
 span.listing div.image amp-img img, span.vendor div.image amp-img img {
-  object-fit: contain;
+    object-fit: contain;
 }
+
 span.listing div.price {
-  margin-top: 0.2rem;
+    margin-top: 0.2rem;
 }
+
 span.listing div.unmoderated {
-  margin-left: 1rem;
-  position:relative;
-  display:inline-block;
-  float:right;
-  color:red
+    margin-left: 1rem;
+    position: relative;
+    display: inline-block;
+    float: right;
+    color: red
 }
+
 span.listing div.moderated {
-  margin-left: 1rem;
-  position:relative;
-  display:inline-block;
-  float:right;
+    margin-left: 1rem;
+    position: relative;
+    display: inline-block;
+    float: right;
 }
+
 span.listing div.fee a {
-  margin-left: 1rem;
-  position:relative;
-  display:inline-block;
-  float:right;
-  color:#E0E0E0;
+    margin-left: 1rem;
+    position: relative;
+    display: inline-block;
+    float: right;
+    color: #E0E0E0;
 }
+
 span.listing div.vendor a {
-  color:orange;
+    color: orange;
 }

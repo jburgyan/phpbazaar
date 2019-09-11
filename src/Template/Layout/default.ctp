@@ -85,13 +85,26 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
     <?php } else { ?>
 	<form action="<?=$this->Url->build([ 'controller' => 'Listings', 'action' => 'index' ])?>" method="get" target="_top">
     <?php } ?>
-    <table class="nav"><tr>
-	<td class="home"><?=$this->Html->link( __( 'Home' ),['controller'=>'Pages','action'=>'display','home']); ?></td>
-	<td class="search"><input type="text" id="s" name="s" placeholder="<?=($this->request->getParam('controller') == 'Vendors'?__('Search Vendors'):__('Search Products')); ?>" value="<?=$this->request->getQuery( 's' )?>"></td>
-	<td class="button"><button type="submit"><?=__('Find'); ?></button></td>
-	<td class="links"><span class="<?=($this->request->getParam('controller') == 'Vendors'?'now':'') ?>"><?=$this->Html->link( __( 'Vendors' ), [ 'controller' => 'Vendors', 'action' => 'index' ]); ?></span></td>
-	<td class="links"><span class="<?=($this->request->getParam('controller') == 'Listings'?'now':'') ?>"><?=$this->Html->link( __( 'Products' ), [ 'controller' => 'Listings', 'action' => 'index' ]); ?></span></td>
-    </tr></table>
+        <div class="nav">
+            <div class="home"><a
+                    href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'display', 'home']); ?>">
+                    <amp-img src="<?= $this->Url->image('logo.svg') ?>" width="241" height="43"
+                             alt="Home"></amp-img>
+                </a></div>
+            <div class="search"><input type="text" id="s" name="s"
+                                       placeholder="<?= ($this->request->getParam('controller') == 'Vendors' ? __('Search Vendors') : __('Search Products')); ?>"
+                                       value="<?= $this->request->getQuery('s') ?>"></div>
+            <div class="button">
+                <button type="submit"><?= __('Find'); ?></button>
+            </div>
+            <div class="links">
+                <span
+                    class="<?= ($this->request->getParam('controller') == 'Vendors' ? 'now' : '') ?>"><?= $this->Html->link(__('Vendors'), ['controller' => 'Vendors', 'action' => 'index']); ?></span>
+                <span
+                    class="<?= ($this->request->getParam('controller') == 'Listings' ? 'now' : '') ?>"><?= $this->Html->link(__('Products'), ['controller' => 'Listings', 'action' => 'index']); ?></span>
+            </div>
+            <div class="clear"></div>
+        </div>
     </form>
     </nav>
     <?= $this->Flash->render() ?>
