@@ -56,10 +56,20 @@ nav input {
     color: blue;
     width: calc(100% - 25px);
     display: block;
-    padding: 6px 0 3px 20px;
+    padding: 5px 0 4px 20px;
 }
 
 nav input::placeholder {
+    color: blue;
+    opacity: 1;
+}
+
+nav input::-webkit-input-placeholder { /* Edge */
+    color: blue;
+    opacity: 1;
+}
+
+nav input:-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: blue;
     opacity: 1;
 }
@@ -69,24 +79,12 @@ nav button {
     border-radius: 10px;
     color: white;
     background-color: blue;
-    padding: 6px 25px 3px;
+    padding: 5px 25px 4px;
 }
 
 nav a {
     color: white;
     font-size: 1.2em;
-}
-
-nav input::-webkit-input-placeholder { /* Edge */
-    color: #FFF;
-}
-
-nav input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #FFF;
-}
-
-::placeholder {
-    color: #FFF;
 }
 
 @media only screen and (max-width: 972px) {
