@@ -25,9 +25,12 @@ class ImagesController extends AppController {
 		}
 		$path = $obdir . DS . $filename;
 		if ( ! is_file( $path ) ) {
+            $default_socket_timeout = ini_get('default_socket_timeout');
+            ini_set('default_socket_timeout', 5);
 			$imagedata = @file_get_contents(
 				"http://localhost:4002/ipfs/" . $hash . "?usecache=false"
 			);
+            ini_set('default_socket_timeout', $default_socket_timeout);
 			if ( ! empty( $imagedata ) ) {
 				file_put_contents( $path, $imagedata );
 			}
