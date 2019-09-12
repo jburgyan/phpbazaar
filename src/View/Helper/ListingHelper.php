@@ -41,7 +41,7 @@ class ListingHelper extends Helper\HtmlHelper {
 	public function price( array $pricejson, $contractType, $coinDivisibility = 0, $currency = '' ) {
 		$html = '';
 		if ( $pricejson['amount'] || $contractType != 'CRYPTOCURRENCY' ) {
-		    if($coinDivisibility && $currency == 'BTC') {
+		    if($coinDivisibility && in_array($currency, array("BTC", "BCH", "ZEC", "LTC"))) {
                 $price = $pricejson['amount'] / $coinDivisibility;
             } else {
                 $price = $pricejson['amount'] / 100;
