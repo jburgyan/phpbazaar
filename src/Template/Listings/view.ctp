@@ -11,7 +11,7 @@
     <h3><?= $listing->title ?></h3>
     <div class="row">
         <h4><?= __('Price') ?></h4>
-        <?php $this->Listing->price($listing->price, $listing->contractType); ?>
+        <?php $this->Listing->price($listing->price, $listing->contractType, $listing->coinDivisibility); ?>
 	    <?= $this->Html->link(__('BUY'), "/pages/buy",['class'=>'buy']) ?>
     </div>
     <div class="row">

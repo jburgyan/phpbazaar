@@ -53,7 +53,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Price') ?></th>
-            <td><?php $this->Listing->price($listing->price, $listing->contractType); ?></td>
+            <td><?php $this->Listing->price($listing->price, $listing->contractType, $listing->coinDivisibility); ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Tags') ?></th>

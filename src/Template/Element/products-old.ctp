@@ -43,7 +43,7 @@ if(empty($vendor)) {
 				<?php
 			}
 			?>
-			<td><?php $this->Listing->price($listing->price, $listing->contractType); ?></td>
+			<td><?php $this->Listing->price($listing->price, $listing->contractType, $listing->coinDivisibility); ?></td>
 			<?php
 			if(empty($vendor)) {
 				?>

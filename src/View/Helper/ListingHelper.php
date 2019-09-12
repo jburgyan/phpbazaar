@@ -35,11 +35,16 @@ class ListingHelper extends Helper\HtmlHelper {
 	/**
 	 * @param array  $pricejson
 	 * @param string $contractType
+     * @param int $coinDivisibility
 	 */
-	public function price( array $pricejson, $contractType ) {
+	public function price( array $pricejson, $contractType, $coinDivisibility = 0 ) {
 		$html = '';
 		if ( $pricejson['amount'] || $contractType != 'CRYPTOCURRENCY' ) {
-			$html .= $pricejson['amount'] / 100;
+		    if($coinDivisibility) {
+                $html .= $pricejson['amount'] / $coinDivisibility;
+            } else {
+                $html .= $pricejson['amount'] / 100;
+            }
 		}
 		$html .= ' ' . $pricejson['currencyCode'];
 		if ( $contractType == 'CRYPTOCURRENCY' ) {

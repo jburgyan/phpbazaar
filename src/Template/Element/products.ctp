@@ -15,7 +15,7 @@
 			<?= $this->Html->link( html_entity_decode($listing->title), [ 'controller' => 'Listings', 'action'     => 'view', $listing->slugPeerId ]) ?>
 		</div>
 		<div class="price">
-			<?php $this->Listing->price($listing->price, $listing->contractType); ?>
+			<?php $this->Listing->price($listing->price, $listing->contractType, $listing->coinDivisibility); ?>
 			<?php if($listing->moderators != '{}'){ ?>
 				<div class="moderated">
 					moderated
