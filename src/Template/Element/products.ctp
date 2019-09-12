@@ -12,7 +12,7 @@
 			<?php $this->Listing->printimages($listing->thumbnail, 'medium'); ?>
 		</div>
 		<div class="title">
-			<?= $this->Html->link( $listing->title, [ 'controller' => 'Listings', 'action'     => 'view', $listing->slugPeerId ]) ?>
+			<?= $this->Html->link( html_entity_decode($listing->title), [ 'controller' => 'Listings', 'action'     => 'view', $listing->slugPeerId ]) ?>
 		</div>
 		<div class="price">
 			<?php $this->Listing->price($listing->price, $listing->contractType); ?>
@@ -35,7 +35,7 @@
 		</div>
 		<div class="vendor">
 			<br>
-			<?= $listing->has('vendor') ? $this->Html->link($listing->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $listing->vendor->peerId]) : '' ?>
+			<?= $listing->has('vendor') ? $this->Html->link(html_entity_decode($listing->vendor->name), ['controller' => 'Vendors', 'action' => 'view', $listing->vendor->peerId]) : '' ?>
 		</div>
 	</span>
 <?php endforeach; ?>
