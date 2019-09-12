@@ -28,10 +28,10 @@
 		</div>
 		<div class="fee">
 			<?php if($listing->fee>0){ ?>
-				<?= $this->Html->link("fee: {$this->Number->format($listing->fee)}", "https://wallet.blockstamp.info/app#/messages?message={$listing->slugPeerId}" ) ?>
-			<?php } else { ?>
-				<?= $this->Html->link("promote", "https://wallet.blockstamp.info/app#/messages?message={$listing->slugPeerId}" ) ?>
-			<?php } ?>
+                <?= $this->Html->link("fee: {$this->Number->format($listing->fee)}", "https://wallet.blockstamp.info/app#/messages?message=BAZAAR--{$listing->slugPeerId}" ) ?>
+            <?php } else { ?>
+                <?= $this->Html->link("promote", "https://wallet.blockstamp.info/app#/messages?message=BAZAAR--{$listing->slugPeerId}" ) ?>
+            <?php } ?>
 		</div>
 		<div class="vendor">
 			<br>
