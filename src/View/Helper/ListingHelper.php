@@ -41,10 +41,12 @@ class ListingHelper extends Helper\HtmlHelper {
 		$html = '';
 		if ( $pricejson['amount'] || $contractType != 'CRYPTOCURRENCY' ) {
 		    if($coinDivisibility) {
-                $html .= $pricejson['amount'] / $coinDivisibility;
+                $price = $pricejson['amount'] / $coinDivisibility;
             } else {
-                $html .= $pricejson['amount'] / 100;
+                $price = $pricejson['amount'] / 100;
             }
+		    $price = rtrim(rtrim(number_format($price, 20), '0'), '.');
+		    $html .= $price;
 		}
 		$html .= ' ' . $pricejson['currencyCode'];
 		if ( $contractType == 'CRYPTOCURRENCY' ) {
