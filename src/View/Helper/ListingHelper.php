@@ -46,7 +46,7 @@ class ListingHelper extends Helper\HtmlHelper {
             } else {
                 $price = $pricejson['amount'] / 100;
             }
-		    $price = rtrim(rtrim(number_format($price, 20), '0'), '.');
+		    $price = rtrim(rtrim(number_format($price, 8), '0'), '.');
 		    $html .= $price;
 		}
 		$html .= ' ' . $pricejson['currencyCode'];
