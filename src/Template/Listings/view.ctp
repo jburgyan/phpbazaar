@@ -12,7 +12,7 @@
     <div class="row">
         <h4><?= __('Price') ?></h4>
         <?php $this->Listing->price($listing->price, $listing->contractType, $listing->coinDivisibility, $listing->pricingCurrency); ?>
-	    <?= $this->Html->link(__('BUY'), "/pages/buy",['class'=>'buy']) ?>
+	    <?= $this->Listing->buylink($listing->slugPeerId); ?>
     </div>
     <div class="row">
         <h4><?= __('Description') ?></h4>
@@ -76,8 +76,4 @@
         <h4><?= __('Updated At') ?></h4>
         <?= h($listing->updatedAt) ?>
     </div>
-	<div class="row">
-		<h4><?= __('SlugPeerID (OpenBazaar link)') ?></h4>
-		<?= $this->Listing->buylink($listing->slugPeerId); ?>
-	</div>
 </div>
