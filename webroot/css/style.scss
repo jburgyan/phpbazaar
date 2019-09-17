@@ -86,6 +86,8 @@ nav {
 					width: calc(100% - 104px);
 					display: block;
 					padding: 5px 0 4px 20px;
+					border-radius: 0;
+					box-shadow: none;
 
 					@media only screen and (max-width: 784px) {
 						width: calc(80% - 104px);
