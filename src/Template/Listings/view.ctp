@@ -78,6 +78,6 @@
     </div>
 	<div class="row">
 		<h4><?= __('SlugPeerID (OpenBazaar link)') ?></h4>
-		<?= $this->Listing->buylink($listing->slugPeerId); ?>
+		<?= h($listing->slugPeerId); ?>
 	</div>
 </div>
