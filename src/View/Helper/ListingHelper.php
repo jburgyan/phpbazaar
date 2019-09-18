@@ -304,6 +304,6 @@ class ListingHelper extends Helper\HtmlHelper {
 		$oburl = explode( '-', $slugPeerId, 2 );
 		$oburl = 'ob://' . $oburl[0] . '/store/' . $oburl[1];
 
-		return $this->link( __('BUY'), $oburl, ['class'=>'buy'] );
+		return $this->link( $slugPeerId, $oburl );
 	}
 }
