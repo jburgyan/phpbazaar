@@ -11,6 +11,11 @@
 		<div class="image">
 			<?php $this->Listing->printimages($listing->thumbnail, 'medium'); ?>
 		</div>
+		<?php if($listing->fee<=0){ ?>
+		<div class="fee">
+			<a href="https://wallet.blockstamp.info/app#/messages?message=BAZAAR--<?= $listing->slugPeerId?>"><i class="fas fa-angle-double-up" title="<?=__('promote')?>" target="_blank"></i></a>
+		</div>
+		<?php } ?>
 		<div class="title">
 			<?= $this->Html->link( html_entity_decode($listing->title), [ 'controller' => 'Listings', 'action'     => 'view', $listing->slugPeerId ]) ?>
 		</div>
@@ -26,13 +31,11 @@
 				</div>
 			<?php } ?>
 		</div>
+		<?php if($listing->fee>0){ ?>
 		<div class="fee">
-			<?php if($listing->fee>0){ ?>
-                <?= $this->Html->link("fee: {$this->Number->format($listing->fee)}", "https://wallet.blockstamp.info/app#/messages?message=BAZAAR--{$listing->slugPeerId}" ) ?>
-            <?php } else { ?>
-                <?= $this->Html->link("promote", "https://wallet.blockstamp.info/app#/messages?message=BAZAAR--{$listing->slugPeerId}" ) ?>
-            <?php } ?>
+			<?= $this->Html->link("fee: {$this->Number->format($listing->fee)}", "https://wallet.blockstamp.info/app#/messages?message=BAZAAR--{$listing->slugPeerId}" ) ?>
 		</div>
+		<?php } ?>
 		<div class="vendor">
 			<br>
 			<?= $listing->has('vendor') ? $this->Html->link(html_entity_decode($listing->vendor->name), ['controller' => 'Vendors', 'action' => 'view', $listing->vendor->peerId]) : '' ?>

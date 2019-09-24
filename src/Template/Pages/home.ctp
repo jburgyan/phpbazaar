@@ -6,6 +6,9 @@ $this->assign( 'title', 'Home' );
 		<div class="aboutPageContainer">
 			<h1>BlockStamp OpenBazaar Explorer</h1>
 			<p>The BlockStamp OpenBazaar Explorer is a viewer of products listed on the distributed OpenBazaar marketplace.</p>
+			<h3>Can I use this explorer in the OpenBazaar application?</h3>
+			<p>You can add this explorer to your openbazaaar application using this URL:</p>
+			<pre><a href="https://bazaar.blockstamp.market/api/search" target="_blank">https://bazaar.blockstamp.market/api/search</a></pre>
 			<h3>What is OpenBazaar?</h3>
 			<p>OpenBazaar is a new peer-to-peer decentralized e-commerce marketplace. It is the first marketplace of its kind. It is controlled by no one and people can transact in any cryptocurrency and with anyone. OpenBazaar has no fees and no restrictions. There isn’t an organization, company, or individual managing OpenBazaar so there’s nobody to pay. The system works by allowing individuals to connect to each other to buy and sell goods without a middleman. The terms and conditions of each individual listing is up to the vendor, they will vary from one person to the next. Learn more here.</p>
 			<a id="buy"></a>
@@ -13,9 +16,6 @@ $this->assign( 'title', 'Home' );
 			<p>Right now, you will have to download the OpenBazaar desktop application to buy goods on OpenBazaar.
 				<a class="clickableLink" href="https://openbazaar.zendesk.com/hc/en-us/articles/202587109-How-do-I-install-and-use-OpenBazaar-" target="_blank">Check this guide out to get setup.</a>
 			</p>
-			<h3>Can I use this explorer in the OpenBazaar application?</h3>
-			<p>You can add this explorer to your openbazaaar application using this URL:</p>
-			<pre><a href="https://bazaar.blockstamp.market/api/search" target="_blank">https://bazaar.blockstamp.market/api/search</a></pre>
 			<h3>How can I promote my products here?</h3>
 			<p>The search ranking on the Explorer can be influenced by burning BlockStamps (BST). BlockStamp is a cryptocurrency available on many exchanges. There are two ways to promote the the products:</p>
 			<ol>
