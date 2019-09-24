@@ -30,6 +30,8 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 	<?= $this->Html->charset() ?>
 	<meta name="viewport" content="width=device-width,minimum-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Muli:400,700&display=swap" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" rel="stylesheet">
+
 	<link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
 	<script async src="https://cdn.ampproject.org/v0.js"></script>
 	<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
@@ -94,16 +96,17 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 	        <div class="nav">
 	            <div class="home">
 		            <a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'display', 'home']); ?>">
-	                    <amp-img width="241" height="43" layout="responsive" src="<?= $this->Url->image('logo.svg?v=2') ?>" alt="Home"></amp-img>
+	                    <amp-img width="241" height="43" layout="responsive" class="desktop" src="<?= $this->Url->image('logo.svg?v=3') ?>" alt="Home"></amp-img>
+			            <amp-img width="42" height="43" layout="responsive" class="mobile" src="<?= $this->Url->image('logo-small.svg') ?>" alt="Home"></amp-img>
 	                </a>
 	            </div>
 	            <div class="search">
 		            <input type="text" id="s" name="s" placeholder="<?= ($this->request->getParam('controller') == 'Vendors' ? __('Search Vendor...') : __('Search Product...')); ?>" value="<?= $this->request->getQuery('s') ?>">
-		            <button type="submit"><?= __('Find'); ?></button>
+		            <button type="submit"><i class="fas fa-search" title="<?= __('Find'); ?>"></i> <span class="desktop"><?= __('Find'); ?></span></button>
 	            </div>
 	            <div class="links">
-	                <span class="<?= ($this->request->getParam('controller') == 'Vendors' ? 'now' : '') ?>"><?= $this->Html->link(__('Vendors'), ['controller' => 'Vendors', 'action' => 'index']); ?></span>
-	                <span class="<?= ($this->request->getParam('controller') == 'Listings' ? 'now' : '') ?>"><?= $this->Html->link(__('Products'), ['controller' => 'Listings', 'action' => 'index']); ?></span>
+		            <span class="<?= ($this->request->getParam('controller') == 'Vendors' ? 'now' : '') ?>"><a href="<?= $this->Url->Build(['controller' => 'Vendors', 'action' => 'index']); ?>"><i class="fas fa-store"></i> <span class="desktop"><?=__('Vendors')?></span></a></span>
+		            <span class="<?= ($this->request->getParam('controller') == 'Listings' ? 'now' : '') ?>"><a href="<?= $this->Url->build(['controller' => 'Listings', 'action' => 'index']); ?>"><i class="fas fa-shopping-basket" title="<?=__('Products')?>"></i> <span class="desktop"><?=__('Products')?></span></a></span>
 	            </div>
 	        </div>
 	    </form>
