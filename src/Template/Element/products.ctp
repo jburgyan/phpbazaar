@@ -13,7 +13,7 @@
 		</div>
 		<?php if($listing->fee<=0){ ?>
 		<div class="fee">
-			<a href="https://wallet.blockstamp.info/app#/messages?message=BAZAAR--<?= $listing->slugPeerId?>"><i class="fas fa-angle-double-up" title="<?=__('promote')?>" target="_blank"></i></a>
+			<a href="https://wallet.blockstamp.info/app#/messages?message=BAZAAR--<?= $listing->slugPeerId?>" target="_blank"><i class="fas fa-angle-double-up" title="<?=__('promote')?>"></i></a>
 		</div>
 		<?php } ?>
 		<div class="title">
