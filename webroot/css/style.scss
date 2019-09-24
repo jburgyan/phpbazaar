@@ -1,5 +1,9 @@
 /* BASIC */
 
+$brand-red: red;
+$brand-black: black;
+$brand-grey: #aaaaaa;
+
 html {
 	font-size: 14px;
 	font-family: 'Muli', sans-serif;
@@ -13,10 +17,10 @@ pre {
 	background: none repeat scroll 0 0 #FFF;
 	box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.24);
 	margin: 15px 0;
-	color: red;
+	color: $brand-red;
 	padding: 5px;
 	a {
-		color: red;
+		color: $brand-red;
 	}
 }
 
@@ -28,11 +32,11 @@ nav {
 	padding: 0.3rem 0.5rem;
 
 	span.now a {
-		border-bottom: 2px solid black;
+		border-bottom: 2px solid $brand-black;
 	}
 
 	a {
-		color: black;
+		color: $brand-black;
 		font-size: 1.2em;
 	}
 
@@ -89,7 +93,7 @@ nav {
 					float: left;
 					background-color: #ebebeb;
 					border: 1px solid #c0c0c0;
-					color: #aaaaaa;
+					color: $brand-grey;
 					width: calc(100% - 117px);
 					display: block;
 					padding: 0 0 0 20px;
@@ -106,36 +110,36 @@ nav {
 					}
 
 					&:focus {
-						color: black;
+						color: $brand-black;
 					}
 
 					&::placeholder {
-						color: #aaaaaa;
+						color: $brand-grey;
 						opacity: 1;
 					}
 
 					&:focus::placeholder {
-						color: black;
+						color: $brand-black;
 					}
 
 					&::-webkit-input-placeholder {
 						/* Edge */
-						color: #aaaaaa;
+						color: $brand-grey;
 						opacity: 1;
 					}
 
 					&:focus::-webkit-input-placeholder {
-						color: black;
+						color: $brand-black;
 					}
 
 					&:-ms-input-placeholder {
 						/* Internet Explorer 10-11 */
-						color: #aaaaaa;
+						color: $brand-grey;
 						opacity: 1;
 					}
 
 					&:focus:-ms-input-placeholder {
-						color: black;
+						color: $brand-black;
 					}
 				}
 
@@ -345,7 +349,7 @@ a.buy {
 	display: block;
 	float: right;
 	position: relative;
-	color: red;
+	color: $brand-red;
 }
 
 table.rating {
@@ -396,7 +400,7 @@ span {
 			position: relative;
 			display: inline-block;
 			float: right;
-			color: red;
+			color: $brand-red;
 		}
 
 		&.moderated {
