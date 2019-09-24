@@ -15,7 +15,7 @@ $this->assign( 'title', 'Home' );
 			</p>
 			<h3>Can I use this explorer in the OpenBazaar application?</h3>
 			<p>You can add this explorer to your openbazaaar application using this URL:</p>
-			<pre>https://bazaar.blockstamp.market/api/search</pre>
+			<pre><a href="https://bazaar.blockstamp.market/api/search" target="_blank">https://bazaar.blockstamp.market/api/search</a></pre>
 			<h3>How can I promote my products here?</h3>
 			<p>The search ranking on the Explorer can be influenced by burning BlockStamps (BST). BlockStamp is a cryptocurrency available on many exchanges. There are two ways to promote the the products:</p>
 			<ol>
