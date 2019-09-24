@@ -22,7 +22,7 @@ $this->assign( 'title', 'Home' );
 				<li>
 					Create a wallet at https://blockstamp.info and add funds to it. It can be done by buying BST at crypto exchange (like Digifinex, Stex, CoinTiger, or PicoStocks) and sending it to wallet or by using PayPal directly in the BlockStamp wallet.<br>
 					Afterwards follow the steps in the article:<br>
-					<a class="clickableLink" href="https://medium.com/blockstamp/selling-on-openbazaar-boost-your-products-search-rankings-1047e2f6d012Or" target="_blank">https://medium.com/blockstamp/selling-on-openbazaar-boost-your-products-search-rankings-1047e2f6d012Or</a>
+					<a class="clickableLink" href="https://medium.com/blockstamp/selling-on-openbazaar-boost-your-products-search-rankings-1047e2f6d012" target="_blank">https://medium.com/blockstamp/selling-on-openbazaar-boost-your-products-search-rankings-1047e2f6d012</a>
 				</li>
 				OR
 				<li>
