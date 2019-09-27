@@ -96,8 +96,12 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 	        <div class="nav">
 	            <div class="home">
 		            <a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'display', 'home']); ?>">
-	                    <amp-img width="241" height="43" layout="responsive" class="desktop" src="<?= $this->Url->image('logo.svg?v=4') ?>" alt="Home"></amp-img>
-			            <amp-img width="42" height="43" layout="responsive" class="mobile" src="<?= $this->Url->image('logo-small.svg?v=2') ?>" alt="Home"></amp-img>
+	                    <!-- <amp-img width="241" height="43" layout="responsive" class="desktop" src="<?= $this->Url->image('logo.svg?v=4') ?>" alt="Home"></amp-img> -->
+			            <div class="logo-container">
+				            <amp-img width="42" height="43" layout="responsive" src="<?= $this->Url->image('logo-small.svg?v=2') ?>" alt="Home"></amp-img>
+			            </div>
+			            <span class="black desktop">Block</span>
+			            <span class="yellow desktop">Stamp</span>
 	                </a>
 	            </div>
 	            <div class="search">
