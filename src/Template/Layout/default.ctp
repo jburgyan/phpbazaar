@@ -100,8 +100,7 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 			            <div class="logo-container">
 				            <amp-img width="42" height="43" layout="responsive" src="<?= $this->Url->image('logo-small.svg?v=2') ?>" alt="Home"></amp-img>
 			            </div>
-			            <span class="black desktop">Block</span>
-			            <span class="yellow desktop">Stamp</span>
+			            <span class="black desktop">Block</span><span class="yellow desktop">Stamp</span>
 	                </a>
 	            </div>
 	            <div class="search">
