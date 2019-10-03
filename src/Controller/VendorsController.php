@@ -91,11 +91,10 @@ class VendorsController extends AppController
 		$peerId = $this->request->getQuery( 'peerId' );
 		if ( $peerId ) {
 			$error   = false;
-			$message = '';
 			$http    = new Client();
 			try {
 				$response = $http->put( Router::url( '/', true ) . 'api/scrapePassedInPeer/' . $peerId );
-				$result   = $response->getJson();
+				$result   = @json_decode($response->getStringBody());
 				$message  = @$result->message;
 				if(empty($message)) {
 					$message = __('We were unable to process your request. Please try again later');
