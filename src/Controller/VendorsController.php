@@ -98,6 +98,8 @@ class VendorsController extends AppController
 				$message  = @$result->message;
 				if(empty($message)) {
 					$message = __('We were unable to process your request. Please try again later');
+				}
+				if($message != 'Added to scrape queue') {
 					$error = true;
 				}
 			}
