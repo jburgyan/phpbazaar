@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use Cake\Datasource\ConnectionManager;
 use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Http\Client;
+use Cake\Routing\Router;
 
 /**
  * Vendors Controller
@@ -84,4 +86,27 @@ class VendorsController extends AppController
 
         $this->set(compact('listings'));
     }
+
+	public function update() {
+		$peerId = $this->request->getQuery( 'peerId' );
+		if ( $peerId ) {
+			$error   = false;
+			$message = '';
+			$http    = new Client();
+			try {
+				$response = $http->put( Router::url( '/', true ) . 'api/scrapePassedInPeer/' . $peerId );
+				$result   = $response->getJson();
+				$message  = @$result->message;
+				if(empty($message)) {
+					$message = __('We were unable to process your request. Please try again later');
+					$error = true;
+				}
+			}
+			catch ( \Exception $e ) {
+				$error   = true;
+				$message = $e->getMessage();
+			}
+			$this->set( compact( 'error', 'message' ) );
+		}
+	}
 }
