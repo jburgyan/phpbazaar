@@ -375,11 +375,9 @@ div.product-image img {
 		.update-response {
 			font-weight: bold;
 			margin-bottom: 2em;
+			color: green;
 			&.error {
 				color: $brand-red;
-			}
-			&.success {
-				color: green;
 			}
 		}
 	}
