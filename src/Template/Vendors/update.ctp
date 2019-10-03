@@ -4,7 +4,7 @@
  * @var string $message
  */
 ?>
-<div class="vendors view columns content text-center">
+<div class="vendors update columns content">
 	<h1><?= __( 'Update store' ) ?></h1>
 	<?php
 	if(!empty($message) || !empty($error)) {
@@ -34,7 +34,7 @@
 		echo $this->Form->button( '<i class="fas fa-sync-alt"></i> ' . __( 'Update' ), [
 			'type' => 'submit',
 			'escape' => false,
-			'class' => '"update-store-input'
+			'class' => 'update-store-input'
 		] );
 		echo $this->Form->end();
 		?>
