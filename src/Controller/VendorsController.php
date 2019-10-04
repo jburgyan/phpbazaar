@@ -5,7 +5,9 @@ namespace App\Controller;
 use Cake\Datasource\ConnectionManager;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Http\Client;
+use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Router;
+use Cake\I18n\FrozenTime;
 
 /**
  * Vendors Controller
@@ -101,6 +103,20 @@ class VendorsController extends AppController
 				}
 				if($message != 'Added to scrape queue') {
 					$error = true;
+				}
+				if(!$error) {
+					$table_locator = new TableLocator();
+					$peers_table         = $table_locator->get( 'Peers' );
+					try {
+						$peers_table->get( $peerId, [
+							'contain' => []
+						] );
+					}
+					catch ( \Cake\Datasource\Exception\RecordNotFoundException $e ) {
+						$peer = $peers_table->newEntity( [ 'updatedat' => new FrozenTime() ] );
+						$peer->peerid = $peerId;
+						$peers_table->save( $peer );
+					}
 				}
 			}
 			catch ( \Exception $e ) {
