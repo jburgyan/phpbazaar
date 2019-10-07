@@ -5,7 +5,7 @@
  */
 ?>
 <div class="vendors update columns content">
-	<h1><?= __( 'Update your store' ) ?></h1>
+	<h1><?= __( 'Update store' ) ?></h1>
 	<?php
 	if(!empty($message) || !empty($error)) {
 		if(empty($message)) {

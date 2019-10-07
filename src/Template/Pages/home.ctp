@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var \App\View\AppView $this
+ */
 $this->assign( 'title', 'Home' );
 ?>
 <div class="row">
@@ -37,6 +40,9 @@ $this->assign( 'title', 'Home' );
 			</ol>
 			<h3>I'm offended by a listing/want a listing taken down!</h3>
 			<p>Due to the nature of OpenBazaar, listings cannot be taken down from the network. In order to hide a listing on this site you will have to reach out to the webmaster of this site and it will be their decision on whether or not to remove a listing.</p>
+
+			<h3>How do I add my store to the Vendors section or update my products?</h3>
+			<p>If you would like to list/update your store and products on this website, please open <?= $this->Html->link('this form', [ 'controller' => 'Vendors', 'action' => 'update' ]) ?>, insert your store's PeerID and click "Update"!</p>
 		</div>
 	</div>
 </div>
