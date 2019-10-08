@@ -19,6 +19,16 @@ use Cake\I18n\FrozenTime;
  */
 class VendorsController extends AppController
 {
+
+	public function initialize() {
+		parent::initialize();
+		$this->loadComponent( 'Security' );
+		$this->Security->setConfig( 'unlockedActions', [
+			'contact',
+			'update'
+		] );
+	}
+
     /**
      * Index method
      */
@@ -125,5 +135,78 @@ class VendorsController extends AppController
 			}
 			$this->set( compact( 'error', 'message' ) );
 		}
+	}
+
+	private function sendJsonResponse( $data = [] ) {
+		$this->set( $data );
+		$this->set( '_serialize', array_keys( $data ) );
+		$this->viewBuilder()->setClassName( 'Json' );
+	}
+
+	/**
+	 * Contact method
+	 *
+	 * @param string $id         Vendor id.
+	 * @param string $listing_id Listing id.
+	 *
+	 * @throws RecordNotFoundException When record not found.
+	 */
+	public function contact( $id, $listing_id ) {
+		$table_locator  = new TableLocator();
+		$listings_table = $table_locator->get( 'Listings' );
+		$error          = '';
+		$message        = '';
+		try {
+			$vendor  = $this->Vendors->get( $id, [
+				'contain' => []
+			] );
+			$listing = $listings_table->get( $listing_id, [
+				'contain' => []
+			] );
+		}
+		catch ( RecordNotFoundException $e ) {
+			$this->render( 'not_found' );
+
+			return;
+		}
+		if ( $this->request->is( 'post' ) ) {
+			$ip = $this->request->clientIp();
+			$messages_table                  = $table_locator->get( 'Messages' );
+			$day_ago = new FrozenTime( null, 'UTC' );
+			$day_ago = $day_ago->addHours(-24);
+			$old_messages = $messages_table->find('all')
+				->where([
+					'Messages.ip' => $ip,
+				    'Messages.createdat > ' => $day_ago->toIso8601String()
+				])
+			->limit(1)->all();
+			$old_messages = $old_messages->toArray();
+			if(count($old_messages) < 1) {
+				$post_data                       = $this->request->getData();
+				$post_data['peerid']             = $id;
+				$post_data['listing_slugpeerid'] = $listing_id;
+				$post_data['createdat']          = new FrozenTime( null, 'UTC' );
+				$post_data['ip']                 = $ip;
+				$vendormessage                   = $messages_table->newEntity($post_data);
+				try {
+					$messages_table->save( $vendormessage );
+				}
+				catch ( \Exception $e ) {
+					$error   = 'error';
+					$message = $e->getMessage();
+				}
+			} else {
+				$error = 'error';
+				$message = __('You can only send one message from the same ip address within 24 hours');
+			}
+			if(empty($message)) {
+				$message = __('Your message has been queued for sending successfully!');
+			}
+			if ( $this->request->accepts( 'application/json' ) ) {
+				$this->sendJsonResponse( [ 'error' => $error, 'message' => $message ] );
+			}
+		}
+
+		$this->set( compact( 'vendor', 'listing', 'error', 'message' ) );
 	}
 }

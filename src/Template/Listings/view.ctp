@@ -12,7 +12,7 @@
     <div class="row">
         <h4><?= __('Price') ?></h4>
         <?php $this->Listing->price($listing->price, $listing->contractType, $listing->coinDivisibility, $listing->pricingCurrency); ?>
-	    <?= $this->Html->link(__('BUY'), "/pages/buy",['class'=>'buy']) ?>
+	    <?= $this->Html->link(__('BUY'), [ 'controller' => 'Vendors', 'action' => 'contact', $listing->vendor->peerID, $listing->slugPeerId ],['class'=>'buy']) ?>
     </div>
     <div class="row">
         <h4><?= __('Description') ?></h4>

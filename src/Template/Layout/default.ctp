@@ -43,7 +43,16 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 		<script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script>
 		<?php
 	}
-	?>
+
+    if (
+    	$this->request->getParam( 'controller' ) == 'Vendors' &&
+	    (in_array($this->request->getParam('action'), array('update', 'contact')))
+    ) {
+    	?>
+	    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+		<?php
+	}
+    ?>
 	<title><?= $cakeTitle ?> :: <?= $this->fetch('title') ?></title>
     <?= $this->Html->meta('icon') ?>
     <?php
