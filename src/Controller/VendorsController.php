@@ -138,6 +138,44 @@ class VendorsController extends AppController
 	}
 
 	private function sendJsonResponse( $data = [] ) {
+		header( 'Cache-Control: private, no-cache' );
+
+		$protocol = ( ! empty( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443 ) ? "https://" : "http://";
+		$thisDomain = $protocol . $_SERVER['HTTP_HOST'];
+
+		$googleAMPCacheSubdomain = str_replace( ".", "-", str_replace( "-", "--", $thisDomain ) );
+
+		$validOrigins = array(
+			'https://' . $googleAMPCacheSubdomain . '.cdn.ampproject.org',
+			'https://cdn.ampproject.org',
+			'https://amp.cloudflare.com',
+			$thisDomain
+		);
+
+		if ( ! in_array( $_SERVER['HTTP_ORIGIN'], $validOrigins ) ) {
+			header( 'X-Debug: ' . $_SERVER['HTTP_ORIGIN'] . ' is an unrecognised origin' );
+			header( 'HTTP/1.0 403 Forbidden' );
+			exit;
+
+			//Stop doing anything if this is an unfamiliar origin
+		}
+
+		if ( $_GET['__amp_source_origin'] != $thisDomain ) {
+			header( 'X-Debug: ' . $_GET['__amp_source_origin'] . ' is an unrecognised source origin' );
+			header( 'HTTP/1.0 403 Forbidden' );
+			exit;
+
+			//Stop doing anything if this is an unfamiliar source origin
+			//Note: if using Amazon Cloudfront, don't forget to allow query strings through
+		}
+
+		header( 'Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN'] );
+		header( 'Access-Control-Allow-Credentials: true' );
+		header( 'Access-Control-Expose-Headers: AMP-Access-Control-Allow-Source-Origin' );
+		header( 'AMP-Access-Control-Allow-Source-Origin: ' . urldecode( $_GET['__amp_source_origin'] ) );
+		header( 'Content-Type: application/json' );
+		// You're in!
+
 		$this->set( $data );
 		$this->set( '_serialize', array_keys( $data ) );
 		$this->viewBuilder()->setClassName( 'Json' );
