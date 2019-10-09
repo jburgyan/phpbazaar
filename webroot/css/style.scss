@@ -295,7 +295,7 @@ div.product-image img {
 	.vendor-avatar {
 		margin-bottom: 1rem;
 	}
-	&.update {
+	&.update, &.contact {
 		label {
 			display: block;
 			clear: both;
@@ -372,12 +372,35 @@ div.product-image img {
 				padding: 0 11px;
 			}
 		}
-		.update-response {
+		.update-response, .contact-response {
 			font-weight: bold;
 			margin-bottom: 2em;
 			color: green;
 			&.error {
 				color: $brand-red;
+			}
+		}
+	}
+	&.contact {
+		label {
+			margin-top: 0.6em;
+			margin-bottom: 0.8em;
+		}
+		textarea {
+			background-color: #ebebeb;
+			border: 1px solid #c0c0c0;
+			color: $brand-grey;
+			width: calc(100% - 42px);
+			display: block;
+			border-radius: 0;
+			box-shadow: none;
+			padding: 8px 20px;
+			&:focus {
+				color: $brand-black;
+			}
+			margin-bottom: 1em;
+			@media only screen and (max-width: 360px) {
+				padding: 0 11px;
 			}
 		}
 	}
