@@ -144,6 +144,7 @@ class VendorsController extends AppController
 		$thisDomain = $protocol . $_SERVER['HTTP_HOST'];
 
 		$googleAMPCacheSubdomain = str_replace( ".", "-", str_replace( "-", "--", $thisDomain ) );
+		$googleAMPCacheSubdomain = str_replace(array('http://', 'https://'), '', $googleAMPCacheSubdomain);
 
 		$validOrigins = array(
 			'https://' . $googleAMPCacheSubdomain . '.cdn.ampproject.org',
