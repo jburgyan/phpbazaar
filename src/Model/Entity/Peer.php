@@ -21,6 +21,7 @@ class Peer extends Entity
      * @var array
      */
     protected $_accessible = [
-        'updatedat' => true
+        'updatedat' => true,
+	    'ip'        => true
     ];
 }

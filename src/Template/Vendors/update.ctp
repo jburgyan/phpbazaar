@@ -19,11 +19,26 @@
 	<div class="row">
 		<?php
 		echo $this->Form->create( null, [
-			'url'    => [ 'controller' => 'Vendors', 'action' => 'update' ],
-			'method' => 'get',
-			'target' => '_top'
+			'url'    => false,
+			'method' => 'post',
+			'action-xhr' => $this->Url->build([ 'controller' => 'Vendors', 'action' => 'update' ])
 		] );
-
+		?>
+		<div submit-success>
+			<template type="amp-mustache">
+				<div class="contact-response {{error}}">
+					{{message}}
+				</div>
+			</template>
+		</div>
+		<div submit-error>
+			<template type="amp-mustache">
+				<div class="contact-response error">
+					<?=__('We were unable to process your request. Please try again later')?>
+				</div>
+			</template>
+		</div>
+		<?php
 		echo $this->Form->control( 'peerId', [
 			'type'        => 'text',
 			'placeholder' => __( 'Example: QmbjKjCPcRD27CmzaPb5qMw2v5fveWWUTKthk6hgJfCYiD' ),

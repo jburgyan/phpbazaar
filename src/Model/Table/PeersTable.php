@@ -53,6 +53,12 @@ class PeersTable extends Table
             ->requirePresence('updatedat', 'create')
             ->notEmptyDateTime('updatedat');
 
+	    $validator
+		    ->scalar('ip')
+		    ->maxLength('ip', 39)
+		    ->requirePresence('ip', 'create')
+		    ->notEmptyString('ip');
+
         return $validator;
     }
 }

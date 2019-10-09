@@ -99,44 +99,6 @@ class VendorsController extends AppController
         $this->set(compact('listings'));
     }
 
-	public function update() {
-		$peerId = $this->request->getQuery( 'peerId' );
-		if ( $peerId ) {
-			$error   = false;
-			$http    = new Client();
-			try {
-				$response = $http->put( Router::url( '/', true ) . 'api/scrapePassedInPeer/' . $peerId );
-				$result   = @json_decode($response->getStringBody());
-				$message  = @$result->message;
-				if(empty($message)) {
-					$message = __('We were unable to process your request. Please try again later');
-				}
-				if($message != 'Added to scrape queue') {
-					$error = true;
-				}
-				if(!$error) {
-					$table_locator = new TableLocator();
-					$peers_table         = $table_locator->get( 'Peers' );
-					try {
-						$peers_table->get( $peerId, [
-							'contain' => []
-						] );
-					}
-					catch ( \Cake\Datasource\Exception\RecordNotFoundException $e ) {
-						$peer = $peers_table->newEntity( [ 'updatedat' => new FrozenTime() ] );
-						$peer->peerid = $peerId;
-						$peers_table->save( $peer );
-					}
-				}
-			}
-			catch ( \Exception $e ) {
-				$error   = true;
-				$message = $e->getMessage();
-			}
-			$this->set( compact( 'error', 'message' ) );
-		}
-	}
-
 	private function sendJsonResponse( $data = [] ) {
 		header( 'Cache-Control: private, no-cache' );
 
@@ -182,6 +144,76 @@ class VendorsController extends AppController
 		$this->viewBuilder()->setClassName( 'Json' );
 	}
 
+	public function update() {
+		$error   = '';
+		$message = '';
+		if ( $this->request->is( 'post' ) ) {
+			$peerId        = $this->request->getData( 'peerId' );
+			$ip            = $this->request->clientIp();
+			$table_locator = new TableLocator();
+			$peers_table   = $table_locator->get( 'Peers' );
+
+			$day_ago   = new FrozenTime( null, 'UTC' );
+			$day_ago   = $day_ago->addHours( - 24 );
+			$old_peers = $peers_table->find( 'all' )
+				->where( [
+					'Peers.ip'           => $ip,
+					'Peers.updatedat > ' => $day_ago->toIso8601String()
+				] )
+				->limit( 1 )->all();
+			$old_peers = $old_peers->toArray();
+			if ( empty( $old_peers ) ) {
+				$http = new Client();
+				try {
+					$response = $http->put( Router::url( '/', true ) . 'api/scrapePassedInPeer/' . $peerId );
+					$result   = @json_decode( $response->getStringBody() );
+					$message  = @$result->message;
+					if ( empty( $message ) ) {
+						$message = __( 'We were unable to process your request. Please try again later' );
+					}
+					if ( $message == 'Added to scrape queue' ) {
+						try {
+							$peer = $peers_table->get( $peerId, [
+								'contain' => []
+							] );
+							if ( ! empty( $peer ) ) {
+								$peer = $peers_table->patchEntity( $peer, [
+									'updatedat' => new FrozenTime( null, 'UTC' ),
+									'ip'        => $ip
+								] );
+								$peers_table->save( $peer );
+							}
+						}
+						catch ( \Cake\Datasource\Exception\RecordNotFoundException $e ) {
+							$peer         = $peers_table->newEntity( [
+								'updatedat' => new FrozenTime( null, 'UTC' ),
+								'ip'        => $ip
+							] );
+							$peer->peerid = $peerId;
+							$peers_table->save( $peer );
+						}
+					} else {
+						$error = 'error';
+					}
+				}
+				catch ( \Exception $e ) {
+					$error   = 'error';
+					$message = $e->getMessage();
+				}
+			} else {
+				$error   = 'error';
+				$message = __( 'You can only request an update from the same ip address within 24 hours' );
+			}
+			if ( empty( $message ) ) {
+				$message = __( 'Your message has been queued for sending successfully!' );
+			}
+			if ( $this->request->accepts( 'application/json' ) ) {
+				$this->sendJsonResponse( [ 'error' => $error, 'message' => $message ] );
+			}
+		}
+		$this->set( compact( 'error', 'message' ) );
+	}
+
 	/**
 	 * Contact method
 	 *
@@ -220,7 +252,7 @@ class VendorsController extends AppController
 				])
 			->limit(1)->all();
 			$old_messages = $old_messages->toArray();
-			if(count($old_messages) < 1) {
+			if(empty($old_messages)) {
 				$post_data                       = $this->request->getData();
 				$post_data['peerid']             = $id;
 				$post_data['listing_slugpeerid'] = $listing_id;
