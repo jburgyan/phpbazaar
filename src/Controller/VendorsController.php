@@ -181,6 +181,7 @@ class VendorsController extends AppController
 									'updatedat' => new FrozenTime( null, 'UTC' ),
 									'ip'        => $ip
 								] );
+								$peer->peerid = $peerId;
 								$peers_table->save( $peer );
 							}
 						}
