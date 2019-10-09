@@ -8,6 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property string $peerid
  * @property \Cake\I18n\FrozenTime $updatedat
+ * @property string $ip
  */
 class Peer extends Entity
 {
