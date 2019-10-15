@@ -1,32 +1,47 @@
 <?php
 /**
- * @var \App\View\AppView $this
- * @var bool $error
- * @var string $message
- * @var array $recaptcha
- * @var \App\Model\Entity\Vendor $vendor
+ * @var \App\View\AppView         $this
+ * @var bool                      $error
+ * @var string                    $message
+ * @var array                     $recaptcha
+ * @var \App\Model\Entity\Vendor  $vendor
  * @var \App\Model\Entity\Listing $listing
  */
 ?>
 <div class="vendors contact columns content">
-	<h1><?= __( 'Contact' ) ?> <?php echo $vendor->name; ?> about <?php echo $listing->title; ?></h1>
+	<h1><?= __( 'Contact' ) ?> <?= $this->Html->link(
+			$vendor->name, [
+			'controller' => 'Vendors',
+			'action'     => 'view',
+			$vendor->peerId
+		], [ 'escape' => false ] ) ?> about <?= $this->Html->link(
+			$listing->title, [
+			'controller' => 'Listings',
+			'action'     => 'view',
+			$listing->slugPeerId
+		], [ 'escape' => false ] ) ?></h1>
 	<?php
-	if(!empty($message) || !empty($error)) {
-		if(empty($message)) {
-			$message = __('We were unable to process your request. Please try again later');
+	if ( ! empty( $message ) || ! empty( $error ) ) {
+		if ( empty( $message ) ) {
+			$message = __( 'We were unable to process your request. Please try again later' );
 		}
 		?>
-		<div class="contact-response<?php if($error) { ?> error<?php } ?>"><?php echo $message; ?></div>
+		<div class="contact-response<?php if ( $error ) { ?> error<?php } ?>"><?php echo $message; ?></div>
 		<?php
 	}
 	?>
 	<div class="row">
 		<?php
 		echo $this->Form->create( null, [
-			'url'    => false,
-			'method' => 'post',
-			'action-xhr' => $this->Url->build([ 'controller' => 'Vendors', 'action' => 'contact', $vendor->peerID, $listing->slugPeerId ])
-		]);
+			'url'        => false,
+			'method'     => 'post',
+			'action-xhr' => $this->Url->build( [
+				'controller' => 'Vendors',
+				'action'     => 'contact',
+				$vendor->peerID,
+				$listing->slugPeerId
+			] )
+		] );
 		?>
 		<div submit-success>
 			<template type="amp-mustache">
@@ -38,28 +53,28 @@
 		<div submit-error>
 			<template type="amp-mustache">
 				<div class="contact-response error">
-				<?=__('We were unable to process your request. Please try again later')?>
+					<?= __( 'We were unable to process your request. Please try again later' ) ?>
 				</div>
 			</template>
 		</div>
 		<?php
-		echo $this->Form->label('email', __( "Your email address" ));
+		echo $this->Form->label( 'email', __( "Your email address" ) );
 		echo $this->Form->email( 'email', [
-			'id' => 'email',
-			'label'       => false,
-			'required'    => true
+			'id'       => 'email',
+			'label'    => false,
+			'required' => true
 		] );
-		echo $this->Form->label('message', __( "Message" ));
+		echo $this->Form->label( 'message', __( "Message" ) );
 		echo $this->Form->textarea( 'message', [
-			'id' => 'message',
-			'label'       => false,
-			'required'    => true
+			'id'       => 'message',
+			'label'    => false,
+			'required' => true
 		] );
 
 		echo $this->Form->button( '<i class="far fa-paper-plane"></i> ' . __( 'Send' ), [
-			'type' => 'submit',
+			'type'   => 'submit',
 			'escape' => false,
-			'class' => 'contact-vendor-input'
+			'class'  => 'contact-vendor-input'
 		] );
 		echo $this->Form->end();
 		?>

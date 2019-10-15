@@ -13,7 +13,7 @@
 			<?php $this->Listing->printimages($vendor->avatarHashes, 'medium', array('class' => 'vendor-avatar')); ?>
 		</div>
 		<div class="title">
-			<?= $this->Html->link(html_entity_decode($vendor->name), ['controller' => 'Vendors', 'action' => 'view', $vendor->peerId]) ?>
+			<?= $this->Html->link($vendor->name, ['controller' => 'Vendors', 'action' => 'view', $vendor->peerId], ['escape'     => false ]) ?>
 		</div>
 		<div class="shortdescription">
 		        <?= $this->Listing->html(html_entity_decode($vendor->shortDescription)); ?>

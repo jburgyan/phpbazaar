@@ -1,8 +1,8 @@
 <?php
 /**
- * @var \App\View\AppView $this
+ * @var \App\View\AppView                                                $this
  * @var \App\Model\Entity\Listing[]|\Cake\Collection\CollectionInterface $listings
- * @var string $vendor_id
+ * @var string                                                           $vendor_id
  */
 ?>
 <div class="listings">
@@ -21,11 +21,11 @@
 		</div>
 		<?php } ?>
 		<div class="title">
-			<?= $this->Html->link( html_entity_decode( $listing->title ), [
+			<?= $this->Html->link( $listing->title, [
 				'controller' => 'Listings',
 				'action'     => 'view',
 				$listing->slugPeerId
-			] ) ?>
+			], [ 'escape' => false ] ) ?>
 		</div>
 		<div class="price">
 			<?php $this->Listing->price( $listing->price, $listing->contractType, $listing->coinDivisibility, $listing->pricingCurrency ); ?>
@@ -46,11 +46,11 @@
 		<?php } ?>
 		<div class="vendor">
 			<br>
-			<?= $listing->has( 'vendor' ) ? $this->Html->link( html_entity_decode( $listing->vendor->name ), [
+			<?= $listing->has( 'vendor' ) ? $this->Html->link( $listing->vendor->name, [
 				'controller' => 'Vendors',
 				'action'     => 'view',
 				$listing->vendor->peerId
-			] ) : '' ?>
+			], [ 'escape' => false ] ) : '' ?>
 		</div>
 	</span>
 	<?php endforeach; ?>
