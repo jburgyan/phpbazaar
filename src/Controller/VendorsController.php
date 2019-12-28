@@ -149,6 +149,8 @@ class VendorsController extends AppController
 		$message = '';
 		if ( $this->request->is( 'post' ) ) {
 			$peerId        = $this->request->getData( 'peerId' );
+            $peerId        = str_replace(array('ob://', '/store'), '', $peerId);
+            $peerId        = rtrim($peerId, '/');
 			$ip            = $this->request->clientIp();
 			$table_locator = new TableLocator();
 			$peers_table   = $table_locator->get( 'Peers' );
