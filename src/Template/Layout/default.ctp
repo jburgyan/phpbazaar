@@ -65,11 +65,10 @@ $cakeDescription = 'The BlockStamp OpenBazaar Explorer is a viewer of products l
 	    $scss = new Compiler();
 	    $minifier->add($scss->compile(file_get_contents(WWW_ROOT.'css/style.scss')));
 	    $regex = array(
-		    "`^([\t\s]+)`ism"=>'',
-		    "`^\/\*(.+?)\*\/`ism"=>"",
-		    "`([\n\A;]+)\/\*(.+?)\*\/`ism"=>"$1",
-		    "`([\n\A;\s]+)//(.+?)[\n\r]`ism"=>"$1\n",
-		    "`(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+`ism"=>"\n"
+            "`^([\t\s]+)`ism"                             => '',
+            "`^\/\*(.+?)\*\/`ism"                         => "",
+            "`(\A|[\n;]+)/\*[^*]*\*+(?:[^/*][^*]*\*+)*/`" => "$1",
+            "`(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+`ism"       => "\n"
 	    );
 	    file_put_contents(
 	    	WWW_ROOT.'css/amp.css',
