@@ -160,7 +160,7 @@ class ListingHelper extends Helper\HtmlHelper {
 		$subdir   = 'img' . DS . 'ob' . DS . substr( $hash, - 2 );
 		$obdir    = WWW_ROOT . $subdir;
 		if ( ! is_dir( $obdir ) ) {
-			mkdir( $obdir );
+			mkdir( $obdir, 0777, true );
 		}
 		$path = $obdir . DS . $filename;
 		if ( is_file( $path ) ) {
@@ -232,7 +232,7 @@ class ListingHelper extends Helper\HtmlHelper {
 						$subdir   = 'img' . DS . 'ob' . DS . substr( $image[ $size ], - 2 );
 						$obdir    = WWW_ROOT . $subdir;
 						if ( ! is_dir( $obdir ) ) {
-							mkdir( $obdir );
+							mkdir( $obdir, 0777, true );
 						}
 						$path = $obdir . DS . $filename;
 						if ( ! is_file( $path ) ) {
